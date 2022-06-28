@@ -43,8 +43,12 @@ main[b-v1g2cdbao8] {
 .nav-item[b-ahqtp35mrs] {
     font-size: 0.9rem;
     padding-bottom: 0.5rem;
-    width: 15rem;
+    width: 10rem;
 }
+
+    .nav-item[b-ahqtp35mrs]  span {
+        margin-right: 0.5em;
+    }
 
     .nav-item[b-ahqtp35mrs]  a {
         color: #d7d7d7;

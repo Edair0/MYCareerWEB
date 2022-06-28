@@ -1,0 +1,81 @@
+﻿@page "/Players"
+
+<h3>Players</h3>
+
+<form>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                    <label style="color: black" for="floatingInput">Fist Name</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                    <label style="color: black" for="floatingPassword">Nickname</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
+                    <label style="color: black" for="floatingPassword">Last Name</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <div class="mb-3">
+                    <select class="form-select">
+                        <option selected>Position</option>
+                        <option value="1">Point Guard</option>
+                        <option value="2">Shooting Guard</option>
+                        <option value="3">Small Forward</option>
+                        <option value="3">Power Forward</option>
+                        <option value="3">Center</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="row">
+                    <div class="col">
+                        <h3>Positive Traits</h3>
+                        <div class="list-group">
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Fast Learner
+                            </label>
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Athletic
+                            </label>
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Prodigy
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <h3>Negative Traits</h3>
+                        <div class="list-group">
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Slow
+                            </label>
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Clumsy
+                            </label>
+                            <label class="list-group-item">
+                                <input class="form-check-input me-1" type="checkbox" value="">Slow Learner
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-secondary">Create</button>
+</form>
+
+@code {
+
+}

@@ -1,3 +1,50 @@
+/* /Pages/Players.razor.rz.scp.css */
+input#floatingInput.form-control[b-clz9ue2sbo] {
+    color: #d7d7d7;
+    background-color: #343a40;
+    border-width: 0;
+}
+
+select.form-select[b-clz9ue2sbo] {
+    color: #d7d7d7;
+    background-color: #343a40;
+    border-width: 0;
+}
+
+label.list-group-item[b-clz9ue2sbo] {
+    color: #d7d7d7;
+    background-color: #343a40;
+    border-width: 0;
+}
+
+*.btn-secondary[b-clz9ue2sbo] {
+    color: #d7d7d7;
+    background-color: #343a40;
+    border-color: #343a40;
+    border-width: 2px;
+    
+}
+
+*.btn-secondary:hover[b-clz9ue2sbo] {
+    color: darkorange;
+    background-color: #343a40;
+    border-color: darkorange;
+    border-width: 2px;
+}
+
+*.btn-check:checked + .btn[b-clz9ue2sbo] {
+    color: darkorange;
+    background-color: #343a40;
+    border-color: darkorange;
+    border-width: 2px;
+}
+
+*.btn-check:focus + .btn[b-clz9ue2sbo] {
+    background-color: #343a40;
+    outline: none;
+    box-shadow: none;
+    border-width: 2px;
+}
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-v1g2cdbao8] {
     position: relative;
@@ -13,7 +60,7 @@ main[b-v1g2cdbao8] {
     background-color: #343a40;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 576px) {
     .page[b-v1g2cdbao8] {
         flex-direction: row;
     }
@@ -69,7 +116,7 @@ main[b-v1g2cdbao8] {
             color: darkorange;
         }
 
-@media (min-width: 641px) {
+@media (min-width: 576px) {
     .navbar-toggler[b-ahqtp35mrs] {
         display: none;
     }

@@ -2,31 +2,32 @@
 
 <h3>Players</h3>
 
+
 <form>
     <div class="container">
         <div class="row">
-            <div class="col">
-                <div class="form-floating mb-3">
+            <div class="col-md-4">
+                <div class="form-floating mb-2">
                     <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: black" for="floatingInput">Fist Name</label>
+                    <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-floating">
+            <div class="col-md-4">
+                <div class="form-floating mb-2">
                     <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: black" for="floatingPassword">Nickname</label>
+                    <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
                 </div>
             </div>
-            <div class="col">
-                <div class="form-floating">
+            <div class="col-md-4">
+                <div class="form-floating mb-2">
                     <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: black" for="floatingPassword">Last Name</label>
+                    <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-4">
+            <div class="col-md-4">
                 <div class="mb-3">
                     <select class="form-select">
                         <option selected>Position</option>
@@ -38,34 +39,32 @@
                     </select>
                 </div>
             </div>
-            <div class="col-8">
+            <div class="col-md-8">
                 <div class="row">
-                    <div class="col">
-                        <h3>Positive Traits</h3>
-                        <div class="list-group">
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Fast Learner
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Athletic
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Prodigy
-                            </label>
+                    <div class="col-md-6">   
+                        <h5 style="width: 100%;" class="text-center">Positive Traits</h5>
+                        <div style="width: 100%;" class="btn-group-vertical">
+                            <input type="checkbox" class="btn-check shadow-none flex-grow-1" id="btncheck1p" autocomplete="off">
+                            <label class="btn btn-secondary" for="btncheck1p">Athletic</label>
+
+                            <input type="checkbox" class="btn-check shadow-none" id="btncheck2p" autocomplete="off">
+                            <label class="btn btn-secondary" for="btncheck2p">Talented</label>
+
+                            <input type="checkbox" class="btn-check shadow-none" id="btncheck3p" autocomplete="off">
+                            <label class="btn btn-secondary" for="btncheck3p">Fast Learner</label>
                         </div>
                     </div>
-                    <div class="col">
-                        <h3>Negative Traits</h3>
-                        <div class="list-group">
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Slow
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Clumsy
-                            </label>
-                            <label class="list-group-item">
-                                <input class="form-check-input me-1" type="checkbox" value="">Slow Learner
-                            </label>
+                    <div class="col-md-6">    
+                        <h5 style="width: 100%;" class="text-center">Negative Traits</h5>
+                        <div style="width: 100%;" class="btn-group-vertical"> 
+                            <input type="checkbox" class="btn-check" id="btncheck1n" autocomplete="off">
+                            <label class="btn btn-secondary shadow-none" for="btncheck1n">Sluggish</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck2n" autocomplete="off">
+                            <label class="btn btn-secondary shadow-none" for="btncheck2n">Clumsy</label>
+
+                            <input type="checkbox" class="btn-check" id="btncheck3n" autocomplete="off">
+                            <label class="btn btn-secondary shadow-none" for="btncheck3n">Slow Learner</label>
                         </div>
                     </div>
                 </div>

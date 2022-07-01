@@ -1,80 +1,154 @@
 ﻿@page "/Players"
 
-<h3>Players</h3>
+@if (!NewPlayerForm)
+{
+    <h3>PLAYERS:</h3>
+    <ul class="list-group">
+        @foreach(Player player in PlayersList)
+        {
+            <li>@player.FirstName @player.NickName @player.LastName</li>
+        }
+    </ul>
+
+    <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">New Player</button>
+}
 
 
-<form>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" ">
-                    <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="mb-3">
-                    <select class="form-select">
-                        <option selected>Position</option>
-                        <option value="1">Point Guard</option>
-                        <option value="2">Shooting Guard</option>
-                        <option value="3">Small Forward</option>
-                        <option value="3">Power Forward</option>
-                        <option value="3">Center</option>
-                    </select>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="row">
-                    <div class="col-md-6">   
-                        <h5 style="width: 100%;" class="text-center">Positive Traits</h5>
-                        <div style="width: 100%;" class="btn-group-vertical">
-                            <input type="checkbox" class="btn-check shadow-none flex-grow-1" id="btncheck1p" autocomplete="off">
-                            <label class="btn btn-secondary" for="btncheck1p">Athletic</label>
-
-                            <input type="checkbox" class="btn-check shadow-none" id="btncheck2p" autocomplete="off">
-                            <label class="btn btn-secondary" for="btncheck2p">Talented</label>
-
-                            <input type="checkbox" class="btn-check shadow-none" id="btncheck3p" autocomplete="off">
-                            <label class="btn btn-secondary" for="btncheck3p">Fast Learner</label>
-                        </div>
+@if (NewPlayerForm)
+{
+    <form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="FirstName">
+                        <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
                     </div>
-                    <div class="col-md-6">    
-                        <h5 style="width: 100%;" class="text-center">Negative Traits</h5>
-                        <div style="width: 100%;" class="btn-group-vertical"> 
-                            <input type="checkbox" class="btn-check" id="btncheck1n" autocomplete="off">
-                            <label class="btn btn-secondary shadow-none" for="btncheck1n">Sluggish</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck2n" autocomplete="off">
-                            <label class="btn btn-secondary shadow-none" for="btncheck2n">Clumsy</label>
-
-                            <input type="checkbox" class="btn-check" id="btncheck3n" autocomplete="off">
-                            <label class="btn btn-secondary shadow-none" for="btncheck3n">Slow Learner</label>
-                        </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="NickName">
+                        <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="LastName">
+                        <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
                     </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="mb-2">
+                        <select class="form-select" @bind="Position">
+                            <option value="0" selected>Position</option>
+                            <option value="1">Point Guard</option>
+                            <option value="2">Shooting Guard</option>
+                            <option value="3">Small Forward</option>
+                            <option value="4">Power Forward</option>
+                            <option value="5">Center</option>
+                        </select>
+                    </div>
+                    @if (Position == 1) // PG
+                    {
+                        <div class="mb-2">
+                            <select class="form-select" @bind="Height">
+                                <option value="0" selected>Height</option>
+                                @for (int i = 0; i <= 13; i++)
+                                {
+                                    <option value="@i">@Heights[i]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    @if (Position == 2) // SG
+                    {
+                        <div class="mb-2">
+                            <select class="form-select" @bind="Height">
+                                <option value="0" selected>Height</option>
+                                @for (int i = 5; i <= 14; i++)
+                                {
+                                    <option value="@i">@Heights[i]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    @if (Position == 3) // SF
+                    {
+                        <div class="mb-2">
+                            <select class="form-select" @bind="Height">
+                                <option value="0" selected>Height</option>
+                                @for (int i = 10; i <= 15; i++)
+                                {
+                                    <option value="@i">@Heights[i]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    @if (Position == 4) // PF
+                    {
+                        <div class="mb-2">
+                            <select class="form-select" @bind="Height">
+                                <option value="0" selected>Height</option>
+                                @for (int i = 12; i <= 17; i++)
+                                {
+                                    <option value="@i">@Heights[i]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                    @if (Position == 5) // C
+                    {
+                        <div class="mb-2">
+                            <select class="form-select" @bind="Height">
+                                <option value="0" selected>Height</option>
+                                @for (int i = 14; i <= 20; i++)
+                                {
+                                    <option value="@i">@Heights[i]</option>
+                                }
+                            </select>
+                        </div>
+                    }
+                </div>
+            </div>
         </div>
+    </form>
+
+    <div class="btn-group mb-3">
+        <button class="btn btn-secondary ripple" @onclick="CreatePlayer">Create</button>
+        <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">Cancel</button>
     </div>
 
-    <button type="submit" class="btn btn-secondary">Create</button>
-</form>
+}
+
 
 @code {
+    private bool NewPlayerForm = false;
+    private List<Player> PlayersList = new List<Player>();
+    private string FirstName = string.Empty;
+    private string NickName = string.Empty;
+    private string LastName = string.Empty;
+    private int Position = 0;
+    private int Height = 0;
 
+    private string[] Positions = { "Position", "Point Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center" };
+    private string[] Heights = { "Height", "5'7\"", "5'8\"", "5'9\"", "5'10\"", "5'11\"", "6'0\"", "6'1\"", "6'2\"", "6'3\"", "6'4\"", "6'5\"",
+    "6'6\"", "6'7\"", "6'8\"", "6'9\"", "6'10\"", "6'11\"", "7'0\"", "7'1\"", "7'2\"", "7'3\"" };
+
+    private void CreatePlayer()
+    {
+        if(FirstName != string.Empty && NickName != string.Empty && LastName != string.Empty && Position != 0 && Height != 0)
+        {
+            Console.WriteLine(FirstName + " " + NickName + " " + LastName + " " + Positions[Position] + " " + Heights[Height]);
+            PlayersList.Add(new Player(FirstName, NickName, LastName, Position, Height));
+        }
+        ToggleNewPlayerForm();
+    }
+
+    private void ToggleNewPlayerForm()
+    {
+        NewPlayerForm = !NewPlayerForm;
+    }
 }

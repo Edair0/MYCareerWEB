@@ -1,7 +1,15 @@
 ﻿@page "/"
+@using MYCareerWEB.Code
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
+@if(AppData.CurrentPlayer != null)
+{
+    <h3>Current Player: @AppData.CurrentPlayer.FirstName @AppData.CurrentPlayer.LastName</h3>
+    <hr/>
+}
+else
+{
+    <h3>No Player Selected</h3>
+    <hr/>
+}

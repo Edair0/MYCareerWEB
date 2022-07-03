@@ -1,4 +1,6 @@
-﻿namespace MYCareerWEB.Code
+﻿using MYCareerWEB.Code.PlayerData.Attribute;
+
+namespace MYCareerWEB.Code.PlayerData
 {
     public class Player
     {
@@ -8,13 +10,13 @@
         public string? LastName { get; set; }
         public int Position { get; set; }
         public int Height { get; set; }
-        public int XP { get; set; }
-        public int BadgeXP { get; set; }
+        public Attributes? Attributes { get; set; }
 
         public Player()
         {
 
         }
+
         public Player(string firstName, string nickName, string lastName, int position, int height)
         {
             FirstName = firstName;
@@ -22,6 +24,8 @@
             LastName = lastName;
             Position = position;
             Height = height;
+
+            Attributes = new Attributes();
         }
     }
 }

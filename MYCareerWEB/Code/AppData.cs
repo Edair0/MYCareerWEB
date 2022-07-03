@@ -1,19 +1,17 @@
 ﻿using IndexedDB.Blazor;
 using Microsoft.AspNetCore.Components;
-
-
-
+using MYCareerWEB.Code.PlayerData;
 namespace MYCareerWEB.Code
 {
 
     public static class AppData
     {
-        public static int CurrentPlayer { get; set; }
+        public static Player? CurrentPlayer { get; set; }
         public static List<Player> Players { get; set; }
 
         public static void Initialize()
         {
-            CurrentPlayer = -1;
+            CurrentPlayer = null;
             Players = new List<Player>();
         }
 

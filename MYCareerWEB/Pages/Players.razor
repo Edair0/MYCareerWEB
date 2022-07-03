@@ -1,24 +1,24 @@
 ﻿@page "/Players"
 @using IndexedDB.Blazor
-@using MYCareerWEB.Code
+@using MYCareerWEB.Code;
+@using MYCareerWEB.Code.PlayerData
 @inject IIndexedDbFactory DbFactory
 
 @if (!NewPlayerForm)
 {
-    
+    <h3>PLAYERS:</h3>
+    <hr />
     <div class="container">
-        <h3>PLAYERS:</h3>
-        <hr/>
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-4">   
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-2">   
             @foreach (Player player in AppData.Players)
             {
                 <div class="col">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">@player.Id @player.FirstName @player.LastName</h5>
-                            <p class="card-text">XP: @player.XP, Badge XP: @player.BadgeXP</p>
+                            <p class="card-text">XP: @player.Attributes.XP</p>
                             <div class="btn-group" role="group">
-                                <button type="button" class="btn btn-primary">Select</button>
+                                <a type="button" href="#" class="btn btn-primary" @onclick="() => SelectPlayer(player)">Select</a>
                                 <button type="button" class="btn btn-primary" @onclick="() => DeletePlayer(player)">Delete</button>
                             </div>
                         </div>
@@ -176,7 +176,7 @@
     {
         if(FirstName != string.Empty && NickName != string.Empty && LastName != string.Empty && Position != 0 && Height != 0)
         {
-            
+
             using (var db = await DbFactory.Create<AppDB>())
             {
                 db.Player.Add(AppData.CreatePlayer(FirstName, NickName, LastName, Position, Height));
@@ -201,11 +201,20 @@
             bool removed = db.Player.Remove(player);
             if (removed)
             {
+                if(player.Id == AppData.CurrentPlayer.Id)
+                {
+                    AppData.CurrentPlayer = null;
+                }
                 AppData.RemovePlayer(player);
             }
             await db.SaveChanges();      
         }
-        
+
+    }
+
+    private async Task SelectPlayer(Player player)
+    {
+        AppData.CurrentPlayer = player;
     }
 
     private void ToggleNewPlayerForm()

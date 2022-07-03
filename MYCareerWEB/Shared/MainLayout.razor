@@ -14,8 +14,10 @@
 </div>
 
 @code{
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         AppData.Initialize();
+        base.OnInitialized();
     }
+
 }

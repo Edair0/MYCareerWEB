@@ -1,5 +1,8 @@
 ﻿@page "/"
-@using MYCareerWEB.Code
+@using IndexedDB.Blazor
+@using MYCareerWEB.Code;
+@using MYCareerWEB.Code.PlayerData
+@inject IIndexedDbFactory DbFactory
 
 <PageTitle>Index</PageTitle>
 
@@ -12,4 +15,21 @@ else
 {
     <h3>No Player Selected</h3>
     <hr/>
+}
+
+<button type="button" class="btn btn-secondary ripple" @onclick="() => DeleteDB()">Delete DB</button>
+
+@code{
+
+    private async Task DeleteDB()
+    {
+        using (var db = await DbFactory.Create<AppDB>())
+        {
+            db.Player.Clear();
+            await db.SaveChanges();
+        }
+
+    }
+
+
 }

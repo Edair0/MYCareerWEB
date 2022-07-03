@@ -19,7 +19,7 @@
                             <p class="card-text">XP: @player.XP, Badge XP: @player.BadgeXP</p>
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-primary">Select</button>
-                                <button type="button" class="btn btn-primary">Delete</button>
+                                <button type="button" class="btn btn-primary" @onclick="() => DeletePlayer(player)">Delete</button>
                             </div>
                         </div>
                     </div>
@@ -176,18 +176,36 @@
     {
         if(FirstName != string.Empty && NickName != string.Empty && LastName != string.Empty && Position != 0 && Height != 0)
         {
-            Player player = AppData.AddPlayer(FirstName, NickName, LastName, Position, Height);
+            
             using (var db = await DbFactory.Create<AppDB>())
             {
-                db.Player.Add(new Player(FirstName, NickName, LastName, Position, Height));
+                db.Player.Add(AppData.CreatePlayer(FirstName, NickName, LastName, Position, Height));
                 await db.SaveChanges();
             }
-            ToggleNewPlayerForm();
+            using (var db = await DbFactory.Create<AppDB>())
+            {
+                AppData.AddPlayer(db.Player.Last());
+                ToggleNewPlayerForm();
+            }
         }
         else
         {
 
         }
+    }
+
+    private async Task DeletePlayer(Player player)
+    {
+        using (var db = await DbFactory.Create<AppDB>())
+        {
+            bool removed = db.Player.Remove(player);
+            if (removed)
+            {
+                AppData.RemovePlayer(player);
+            }
+            await db.SaveChanges();      
+        }
+        
     }
 
     private void ToggleNewPlayerForm()

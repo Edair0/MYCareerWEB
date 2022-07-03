@@ -17,11 +17,19 @@ namespace MYCareerWEB.Code
             Players = new List<Player>();
         }
 
-        public static Player AddPlayer(string firstName, string nickName, string lastName, int position, int height)
+        public static Player CreatePlayer(string firstName, string nickName, string lastName, int position, int height)
         {
-            Player result = new Player(firstName, nickName, lastName, position, height);
-            Players.Add(result);
-            return result;
+            return new Player(firstName, nickName, lastName, position, height);
+        }
+
+        public static void AddPlayer(Player player)
+        {
+            Players.Add(player);
+        }
+
+        public static void RemovePlayer(Player player)
+        {
+            Players.Remove(player);
         }
 
 

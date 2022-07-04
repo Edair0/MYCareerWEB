@@ -40,20 +40,20 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="FirstName">
-                <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
+                <input type="text" class="form-control" id="floatingFirstName" placeholder=" " @bind="FirstName">
+                <label style="color: #d7d7d7" for="floatingFirstName">First Name</label>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="NickName">
-                <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
+                <input type="text" class="form-control" id="floatingNickName" placeholder=" " @bind="NickName">
+                <label style="color: #d7d7d7" for="floatingNickName">Nickname</label>
             </div>
         </div>
         <div class="col-md-4">
             <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="LastName">
-                <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
+                <input type="text" class="form-control" id="floatingLastName" placeholder=" " @bind="LastName">
+                <label style="color: #d7d7d7" for="floatingLastName">Last Name</label>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                 <div class="mb-2">
                     <select class="form-select" @bind="Height">
                         <option value="0" selected>Height</option>
-                        @for (int i = 0; i <= 13; i++)
+                        @for (int i = 1; i <= 13; i++)
                         {
                             <option value="@i">@Heights[i]</option>
                         }

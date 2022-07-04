@@ -1,162 +1,68 @@
 ﻿@page "/Badges"
-@using MYCareerWEB.Code
+@using IndexedDB.Blazor
+@using MYCareerWEB.Code;
+@using MYCareerWEB.Code.PlayerData
+@inject IIndexedDbFactory DbFactory
 
 <h3>Badges</h3>
 <hr/>
 
 @if(AppData.CurrentPlayer != null)
 {
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-        @for (int i = 0; i < InsideScoring.Length; i++)
-        {
-            <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
-                        @InsideScoring[i]
-                    </div>
-                    @if (AppData.CurrentPlayer.Badges.InsideScoring[i] == 0)
-                    {
-                        <img src="@GetImg(InsideScoring[i], AppData.CurrentPlayer.Badges.InsideScoring[i])" class="card-img-top badge-none">
-                    }
-                    else
-                    {
-                        <img src="@GetImg(InsideScoring[i], AppData.CurrentPlayer.Badges.InsideScoring[i])" class="card-img-top badge-on">
-                    }         
-                    <div class="card-body align-self-center">
-                        <button type="button" class="btn btn-primary">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <hr/>
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-        @for (int i = 0; i < OutsideScoring.Length; i++)
-        {
-            <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
-                        @OutsideScoring[i]
-                    </div>
-                    @if (AppData.CurrentPlayer.Badges.OutsideScoring[i] == 0)
-                    {
-                        <img src="@GetImg(OutsideScoring[i], AppData.CurrentPlayer.Badges.OutsideScoring[i])" class="card-img-top badge-none">
-                    }
-                    else
-                    {
-                        <img src="@GetImg(OutsideScoring[i], AppData.CurrentPlayer.Badges.OutsideScoring[i])" class="card-img-top badge-on">
-                    }
-                    <div class="card-body align-self-center">
-                        <button type="button" class="btn btn-primary">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <hr/>
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-        @for (int i = 0; i < Playmaking.Length; i++)
-        {
-            <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
-                        @Playmaking[i]
-                    </div>
-                    @if (AppData.CurrentPlayer.Badges.Playmaking[i] == 0)
-                    {
-                        <img src="@GetImg(Playmaking[i], AppData.CurrentPlayer.Badges.Playmaking[i])" class="card-img-top badge-none">
-                    }
-                    else
-                    {
-                        <img src="@GetImg(Playmaking[i], AppData.CurrentPlayer.Badges.Playmaking[i])" class="card-img-top badge-on">
-                    }
-                    <div class="card-body align-self-center">
-                        <button type="button" class="btn btn-primary">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <hr/>
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-        @for (int i = 0; i < Defending.Length; i++)
-        {
-            <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
-                        @Defending[i]
-                    </div>
-                    @if (AppData.CurrentPlayer.Badges.Defending[i] == 0)
-                    {
-                        <img src="@GetImg(Defending[i], AppData.CurrentPlayer.Badges.Defending[i])" class="card-img-top badge-none">
-                    }
-                    else
-                    {
-                        <img src="@GetImg(Defending[i], AppData.CurrentPlayer.Badges.Defending[i])" class="card-img-top badge-on">
-                    }
-                    <div class="card-body align-self-center">
-                        <button type="button" class="btn btn-primary">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
-    <hr/>
-    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-        @for (int i = 0; i < AthleticismRebounding.Length; i++)
-        {
-            <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
-                        @AthleticismRebounding[i]
-                    </div>
-                    @if (AppData.CurrentPlayer.Badges.AthleticismRebounding[i] == 0)
-                    {
-                        <img src="@GetImg(AthleticismRebounding[i], AppData.CurrentPlayer.Badges.AthleticismRebounding[i])" class="card-img-top badge-none">
-                    }
-                    else
-                    {
-                        <img src="@GetImg(AthleticismRebounding[i], AppData.CurrentPlayer.Badges.AthleticismRebounding[i])" class="card-img-top badge-on">
-                    }
-                    <div class="card-body align-self-center">
-                        <button type="button" class="btn btn-primary">Upgrade</button>
-                    </div>
-                </div>
-            </div>
-        }
-    </div>
+    <BadgesGroup BadgeNames="@InsideScoring" BadgeCost1="InsideScoringCost1" BadgeCost2="InsideScoringCost2" BadgeCost3="InsideScoringCost3" BadgeCost4="InsideScoringCost4"  PlayerBadgeData="AppData.CurrentPlayer.Badges.InsideScoring" > </BadgesGroup>
+    <hr />
+    <BadgesGroup BadgeNames="@OutsideScoring" BadgeCost1="OutsideScoringCost1" BadgeCost2="OutsideScoringCost2" BadgeCost3="OutsideScoringCost3" BadgeCost4="OutsideScoringCost4" PlayerBadgeData="AppData.CurrentPlayer.Badges.OutsideScoring"> </BadgesGroup>
+    <hr />
+    <BadgesGroup BadgeNames="@Playmaking" BadgeCost1="PlaymakingCost1" BadgeCost2="PlaymakingCost2" BadgeCost3="PlaymakingCost3" BadgeCost4="PlaymakingCost4" PlayerBadgeData="AppData.CurrentPlayer.Badges.Playmaking"> </BadgesGroup>
+    <hr />
+    <BadgesGroup BadgeNames="@Defending" BadgeCost1="DefendingCost1" BadgeCost2="DefendingCost2" BadgeCost3="DefendingCost3" BadgeCost4="DefendingCost4" PlayerBadgeData="AppData.CurrentPlayer.Badges.Defending"> </BadgesGroup>
+    <hr />
+    <BadgesGroup BadgeNames="@AthleticismRebounding" BadgeCost1="AthleticismReboundingCost1" BadgeCost2="AthleticismReboundingCost2" BadgeCost3="AthleticismReboundingCost3" BadgeCost4="AthleticismReboundingCost4" PlayerBadgeData="AppData.CurrentPlayer.Badges.AthleticismRebounding"> </BadgesGroup>
 }
-
-
 
 @code {
     private string[] InsideScoring = { "Fearless Finisher", "Acrobat", "Tear Dropper", "Post Spin Technician", "Dropstepper", "Putback Boss",
     "Hook Specialist", "Posterizer", "Backdown Punisher", "Rise Up", "Giant Slayer", "Pro Touch", "Slithery Finisher", "Unstrippable",
     "Mouse In The House", "Limitless Takeoff", "Grace Under Pressure", "Fast Twitch" };
 
+    private int[] InsideScoringCost1 = { 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 };
+    private int[] InsideScoringCost2 = { 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000 };
+    private int[] InsideScoringCost3 = { 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000 };
+    private int[] InsideScoringCost4 = { 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000 };
+
     private string[] OutsideScoring = { "Catch & Shoot", "Corner Specialist", "Difficult Shots", "Mismatch Expert", "Lucky Number 7", "Blinders",
     "Circus Threes", "Fade Ace", "Limitless Spot-Up", "Chef", "Rhythm Shooter", "Set Shooter", "Clutch Shooter", "Deadeye", "Sniper", "Stop & Pop", 
     "Green Machine", "Hot Zone Hunter", "Volume Shooter", "Slippery Off-Ball" };
+
+    private int[] OutsideScoringCost1 = { 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 };
+    private int[] OutsideScoringCost2 = { 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000 };
+    private int[] OutsideScoringCost3 = { 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000 };
+    private int[] OutsideScoringCost4 = { 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000 };
 
     private string[] Playmaking = { "Ankle Breaker", "Hyperdrive", "Break Starter", "Glue Hands", "Dimer", "Quick Chain",
     "Bail Out", "Downhill", "Dream Shake", "Handles For Days", "Needle Threader", "Quick First Step", "Space Creator", "Stop & Go",
     "Tight Handles", "Unpluckable", "Bullet Passer", "Special Delivery", "Floor General", "Post Playmaker", "Triple Threat Juke" };
 
+    private int[] PlaymakingCost1 = { 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 };
+    private int[] PlaymakingCost2 = { 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000 };
+    private int[] PlaymakingCost3 = { 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000 };
+    private int[] PlaymakingCost4 = { 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000 };
+
     private string[] Defending = { "Pick Pocket", "Rim Protector", "Pick Dodger", "Chase Down Artist", "Clamps", "Defensive Leader",
     "Interceptor", "Intimidator", "Off-Ball Pest", "Pogo Stick", "Post Lockdown", "Tireless Defender", "Ankle Braces", "Menace",
     "Ball Stripper", "Hustler" };
 
+    private int[] DefendingCost1 = { 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000 };
+    private int[] DefendingCost2 = { 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000, 2000 };
+    private int[] DefendingCost3 = { 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000, 4000 };
+    private int[] DefendingCost4 = { 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000 };
+
     private string[] AthleticismRebounding = { "Brick Wall", "Lob City Finisher", "Box", "Rebound Chaser", "Worm" };
-    
 
-    private string GetImg(string BadgeName, int BadgeLevel)
-    {
-        int level = BadgeLevel;
-        if(BadgeLevel == 0) { level = 2; }
-        string result = new string(BadgeName.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
-        return "img/badges/" + result + level.ToString() + ".png";
-    }
-
+    private int[] AthleticismReboundingCost1 = { 1000, 1000, 1000, 1000, 1000 };
+    private int[] AthleticismReboundingCost2 = { 2000, 2000, 2000, 2000, 2000 };
+    private int[] AthleticismReboundingCost3 = { 4000, 4000, 4000, 4000, 4000 };
+    private int[] AthleticismReboundingCost4 = { 8000, 8000, 8000, 8000, 8000 };
 
 
 }

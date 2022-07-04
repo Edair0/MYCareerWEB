@@ -10,8 +10,8 @@
         @for (int i = 0; i < InsideScoring.Length; i++)
         {
             <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
+                <div class="card h-100">
+                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
                         @InsideScoring[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.InsideScoring[i] == 0)
@@ -21,7 +21,7 @@
                     else
                     {
                         <img src="@GetImg(InsideScoring[i], AppData.CurrentPlayer.Badges.InsideScoring[i])" class="card-img-top badge-on">
-                    }         
+                    }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
                     </div>
@@ -34,8 +34,8 @@
         @for (int i = 0; i < OutsideScoring.Length; i++)
         {
             <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
+                <div class="card h-100">
+                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
                         @OutsideScoring[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.OutsideScoring[i] == 0)
@@ -58,8 +58,8 @@
         @for (int i = 0; i < Playmaking.Length; i++)
         {
             <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
+                <div class="card h-100">
+                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
                         @Playmaking[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.Playmaking[i] == 0)
@@ -82,8 +82,8 @@
         @for (int i = 0; i < Defending.Length; i++)
         {
             <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
+                <div class="card h-100">
+                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
                         @Defending[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.Defending[i] == 0)
@@ -106,8 +106,8 @@
         @for (int i = 0; i < AthleticismRebounding.Length; i++)
         {
             <div class="col">
-                <div class="card">
-                    <div class="card-header align-self-center">
+                <div class="card h-100">
+                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
                         @AthleticismRebounding[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.AthleticismRebounding[i] == 0)

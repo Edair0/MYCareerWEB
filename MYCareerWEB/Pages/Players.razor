@@ -8,143 +8,134 @@
 {
     <h3>PLAYERS:</h3>
     <hr />
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-2">   
-            @foreach (Player player in AppData.Players)
-            {
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">@player.Id @player.FirstName @player.LastName</h5>
-                            <p class="card-text">XP: @player.Attributes.XP</p>
-                            <div class="btn-group" role="group">
-                                <a type="button" href="#" class="btn btn-primary" @onclick="() => SelectPlayer(player)">Select</a>
-                                <button type="button" class="btn btn-primary" @onclick="() => DeletePlayer(player)">Delete</button>
-                            </div>
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-2">   
+        @foreach (Player player in AppData.Players)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">@player.Id @player.FirstName @player.LastName</h5>
+                        <p class="card-text">XP: @player.Attributes.XP</p>
+                        <div class="btn-group" role="group">
+                            <a type="button" href="#" class="btn btn-primary" @onclick="() => SelectPlayer(player)">Select</a>
+                            <button type="button" class="btn btn-primary" @onclick="() => DeletePlayer(player)">Delete</button>
                         </div>
                     </div>
                 </div>
-            }        
-        </div>
-        <div class="row">
-            <div class="col gy-2">
-                <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">New Player</button>        
             </div>
-        </div>
-        
+        }        
     </div>
-
-
-
-    
+    <div class="row">
+        <div class="col gy-2">
+            <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">New Player</button>        
+        </div>
+    </div> 
 }
 
 
 @if (NewPlayerForm)
 {
-    <div class="container">
-        <h3>PLAYERS:</h3>
-        <hr />
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="FirstName">
-                    <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="NickName">
-                    <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="LastName">
-                    <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
-                </div>
+    <h3>PLAYERS:</h3>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="FirstName">
+                <label style="color: #d7d7d7" for="floatingInput">Fist Name</label>
             </div>
         </div>
+        <div class="col-md-4">
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="NickName">
+                <label style="color: #d7d7d7" for="floatingPassword">Nickname</label>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-floating mb-2">
+                <input type="text" class="form-control" id="floatingInput" placeholder=" " @bind="LastName">
+                <label style="color: #d7d7d7" for="floatingPassword">Last Name</label>
+            </div>
+        </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="mb-2">
+                <select class="form-select" @bind="Position">
+                    <option value="0" selected>Position</option>
+                    <option value="1">Point Guard</option>
+                    <option value="2">Shooting Guard</option>
+                    <option value="3">Small Forward</option>
+                    <option value="4">Power Forward</option>
+                    <option value="5">Center</option>
+                </select>
+            </div>
+            @if (Position == 1) // PG
+            {
                 <div class="mb-2">
-                    <select class="form-select" @bind="Position">
-                        <option value="0" selected>Position</option>
-                        <option value="1">Point Guard</option>
-                        <option value="2">Shooting Guard</option>
-                        <option value="3">Small Forward</option>
-                        <option value="4">Power Forward</option>
-                        <option value="5">Center</option>
+                    <select class="form-select" @bind="Height">
+                        <option value="0" selected>Height</option>
+                        @for (int i = 0; i <= 13; i++)
+                        {
+                            <option value="@i">@Heights[i]</option>
+                        }
                     </select>
                 </div>
-                @if (Position == 1) // PG
-                {
-                    <div class="mb-2">
-                        <select class="form-select" @bind="Height">
-                            <option value="0" selected>Height</option>
-                            @for (int i = 0; i <= 13; i++)
-                            {
-                                <option value="@i">@Heights[i]</option>
-                            }
-                        </select>
-                    </div>
-                }
-                @if (Position == 2) // SG
-                {
-                    <div class="mb-2">
-                        <select class="form-select" @bind="Height">
-                            <option value="0" selected>Height</option>
-                            @for (int i = 5; i <= 14; i++)
-                            {
-                                <option value="@i">@Heights[i]</option>
-                            }
-                        </select>
-                    </div>
-                }
-                @if (Position == 3) // SF
-                {
-                    <div class="mb-2">
-                        <select class="form-select" @bind="Height">
-                            <option value="0" selected>Height</option>
-                            @for (int i = 10; i <= 15; i++)
-                            {
-                                <option value="@i">@Heights[i]</option>
-                            }
-                        </select>
-                    </div>
-                }
-                @if (Position == 4) // PF
-                {
-                    <div class="mb-2">
-                        <select class="form-select" @bind="Height">
-                            <option value="0" selected>Height</option>
-                            @for (int i = 12; i <= 17; i++)
-                            {
-                                <option value="@i">@Heights[i]</option>
-                            }
-                        </select>
-                    </div>
-                }
-                @if (Position == 5) // C
-                {
-                    <div class="mb-2">
-                        <select class="form-select" @bind="Height">
-                            <option value="0" selected>Height</option>
-                            @for (int i = 14; i <= 20; i++)
-                            {
-                                <option value="@i">@Heights[i]</option>
-                            }
-                        </select>
-                    </div>
-                }
-            </div>
+            }
+            @if (Position == 2) // SG
+            {
+                <div class="mb-2">
+                    <select class="form-select" @bind="Height">
+                        <option value="0" selected>Height</option>
+                        @for (int i = 5; i <= 14; i++)
+                        {
+                            <option value="@i">@Heights[i]</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (Position == 3) // SF
+            {
+                <div class="mb-2">
+                    <select class="form-select" @bind="Height">
+                        <option value="0" selected>Height</option>
+                        @for (int i = 10; i <= 15; i++)
+                        {
+                            <option value="@i">@Heights[i]</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (Position == 4) // PF
+            {
+                <div class="mb-2">
+                    <select class="form-select" @bind="Height">
+                        <option value="0" selected>Height</option>
+                        @for (int i = 12; i <= 17; i++)
+                        {
+                            <option value="@i">@Heights[i]</option>
+                        }
+                    </select>
+                </div>
+            }
+            @if (Position == 5) // C
+            {
+                <div class="mb-2">
+                    <select class="form-select" @bind="Height">
+                        <option value="0" selected>Height</option>
+                        @for (int i = 14; i <= 20; i++)
+                        {
+                            <option value="@i">@Heights[i]</option>
+                        }
+                    </select>
+                </div>
+            }
         </div>
-        <div class="row">
-            <div class="btn-group mb-3">
-                <button class="btn btn-secondary ripple" @onclick="CreatePlayer">Create</button>
-                <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">Cancel</button>
-            </div>
+    </div>
+    <div class="row">
+        <div class="btn-group mb-3">
+            <button class="btn btn-secondary ripple" @onclick="CreatePlayer">Create</button>
+            <button class="btn btn-secondary ripple" @onclick="ToggleNewPlayerForm">Cancel</button>
         </div>
     </div>
 }

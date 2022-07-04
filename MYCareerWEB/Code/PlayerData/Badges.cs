@@ -11,13 +11,22 @@
 
         public Badges()
         {
-            XP = 0;
+            XP = 100000;
             InsideScoring = new int[18];
             OutsideScoring = new int[20];
             Playmaking = new int[21];
             Defending = new int[16];
             AthleticismRebounding = new int[5];
         }
+    }
+
+    public enum BadgeType
+    {
+        InsideScoring = 0,
+        OutsideScoring = 1,
+        Playmaking = 2,
+        Defending = 3,
+        AthleticismRebounding = 4,
     }
     public enum InsideScoring
     {

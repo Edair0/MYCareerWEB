@@ -1,0 +1,77 @@
+﻿@using IndexedDB.Blazor
+@using MYCareerWEB.Code;
+@using MYCareerWEB.Code.PlayerData
+@inject IIndexedDbFactory DbFactory
+
+<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+    @for (int i = 0; i < BadgeNames.Length; i++)
+    {
+        int id = i;
+        <div class="col">
+            <div class="card h-100 text-center">
+                <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
+                    @BadgeNames[i]
+                </div>
+                @if (PlayerBadgeData[i] == 0) { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-none"> }
+                else { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-on"> }
+                <div class="card-body align-self-center">
+                    @if (PlayerBadgeData[i] < 4)
+                    {
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade</button>
+                    }
+                    @if (PlayerBadgeData[i] == 0) { <label>@BadgeCost1[i] XP</label> }
+                    @if (PlayerBadgeData[i] == 1) { <label>@BadgeCost2[i] XP</label> }
+                    @if (PlayerBadgeData[i] == 2) { <label>@BadgeCost3[i] XP</label> }
+                    @if (PlayerBadgeData[i] == 3) { <label>@BadgeCost4[i] XP</label> }
+                    @if (PlayerBadgeData[i] == 4) { <label>MAXED</label> }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string[] BadgeNames { get; set; }
+    [Parameter]
+    public int[] BadgeCost1 { get; set; }
+    [Parameter]
+    public int[] BadgeCost2 { get; set; }
+    [Parameter]
+    public int[] BadgeCost3 { get; set; }
+    [Parameter]
+    public int[] BadgeCost4 { get; set; }
+    [Parameter]
+    public int[] PlayerBadgeData { get; set; }
+
+    private string GetImg(string BadgeName, int BadgeLevel)
+    {
+        int level = BadgeLevel;
+        if (BadgeLevel == 0) { level = 2; }
+        string result = new string(BadgeName.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+        return "img/badges/" + result + level.ToString() + ".png";
+    }
+
+    private async Task UpgradeBadge(int id)
+    {
+        int currentLevel = PlayerBadgeData[id];
+        int cost = 0;
+        if (currentLevel + 1 == 1) { cost = BadgeCost1[id]; }
+        else if (currentLevel + 1 == 2) { cost = BadgeCost2[id]; }
+        else if (currentLevel + 1 == 3) { cost = BadgeCost3[id]; }
+        else if (currentLevel + 1 == 4) { cost = BadgeCost4[id]; }
+        if (AppData.CurrentPlayer.Badges.XP >= cost && cost != 0)
+        {
+            PlayerBadgeData[id] += 1;
+            AppData.CurrentPlayer.Badges.XP -= cost;
+        }
+
+        using (var db = await this.DbFactory.Create<AppDB>())
+        {
+            Player EditedPlayer = db.Player.Single(x => x.Id == AppData.CurrentPlayer.Id);
+            EditedPlayer.Badges = AppData.CurrentPlayer.Badges;
+            await db.SaveChanges();
+        }
+    }
+
+}

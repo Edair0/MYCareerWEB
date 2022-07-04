@@ -10,8 +10,8 @@
         @for (int i = 0; i < InsideScoring.Length; i++)
         {
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                         @InsideScoring[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.InsideScoring[i] == 0)
@@ -24,6 +24,7 @@
                     }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
+                        <label>1000 XP</label>
                     </div>
                 </div>
             </div>
@@ -34,8 +35,8 @@
         @for (int i = 0; i < OutsideScoring.Length; i++)
         {
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                         @OutsideScoring[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.OutsideScoring[i] == 0)
@@ -48,6 +49,7 @@
                     }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
+                        <label>1000 XP</label>
                     </div>
                 </div>
             </div>
@@ -58,8 +60,8 @@
         @for (int i = 0; i < Playmaking.Length; i++)
         {
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                         @Playmaking[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.Playmaking[i] == 0)
@@ -72,6 +74,7 @@
                     }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
+                        <label>1000 XP</label>
                     </div>
                 </div>
             </div>
@@ -82,8 +85,8 @@
         @for (int i = 0; i < Defending.Length; i++)
         {
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                         @Defending[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.Defending[i] == 0)
@@ -96,6 +99,7 @@
                     }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
+                        <label>1000 XP</label>
                     </div>
                 </div>
             </div>
@@ -106,8 +110,8 @@
         @for (int i = 0; i < AthleticismRebounding.Length; i++)
         {
             <div class="col">
-                <div class="card h-100">
-                    <div class="card-header h-100 text-center d-flex align-items-center justify-content-center">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                         @AthleticismRebounding[i]
                     </div>
                     @if (AppData.CurrentPlayer.Badges.AthleticismRebounding[i] == 0)
@@ -120,6 +124,7 @@
                     }
                     <div class="card-body align-self-center">
                         <button type="button" class="btn btn-primary">Upgrade</button>
+                        <label>1000 XP</label>
                     </div>
                 </div>
             </div>

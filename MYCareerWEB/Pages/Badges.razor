@@ -4,24 +4,159 @@
 <h3>Badges</h3>
 <hr/>
 
-<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-    @for(int i = 0; i < 16; i++)
-    {
-        <div class="col">
-            <div class="card">
-                <div class="card-header align-self-center">
-                    BadgeName
-                </div>
-                <img src="img/Acrobat2.png" class="card-img-top badge-none">
-                <div class="card-body align-self-center">
-                    <button type="button" class="btn btn-primary">Upgrade</button>
+@if(AppData.CurrentPlayer != null)
+{
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+        @for (int i = 0; i < InsideScoring.Length; i++)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header align-self-center">
+                        @InsideScoring[i]
+                    </div>
+                    @if (AppData.CurrentPlayer.Badges.InsideScoring[i] == 0)
+                    {
+                        <img src="@GetImg(InsideScoring[i], AppData.CurrentPlayer.Badges.InsideScoring[i])" class="card-img-top badge-none">
+                    }
+                    else
+                    {
+                        <img src="@GetImg(InsideScoring[i], AppData.CurrentPlayer.Badges.InsideScoring[i])" class="card-img-top badge-on">
+                    }         
+                    <div class="card-body align-self-center">
+                        <button type="button" class="btn btn-primary">Upgrade</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
+    <hr/>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+        @for (int i = 0; i < OutsideScoring.Length; i++)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header align-self-center">
+                        @OutsideScoring[i]
+                    </div>
+                    @if (AppData.CurrentPlayer.Badges.OutsideScoring[i] == 0)
+                    {
+                        <img src="@GetImg(OutsideScoring[i], AppData.CurrentPlayer.Badges.OutsideScoring[i])" class="card-img-top badge-none">
+                    }
+                    else
+                    {
+                        <img src="@GetImg(OutsideScoring[i], AppData.CurrentPlayer.Badges.OutsideScoring[i])" class="card-img-top badge-on">
+                    }
+                    <div class="card-body align-self-center">
+                        <button type="button" class="btn btn-primary">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr/>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+        @for (int i = 0; i < Playmaking.Length; i++)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header align-self-center">
+                        @Playmaking[i]
+                    </div>
+                    @if (AppData.CurrentPlayer.Badges.Playmaking[i] == 0)
+                    {
+                        <img src="@GetImg(Playmaking[i], AppData.CurrentPlayer.Badges.Playmaking[i])" class="card-img-top badge-none">
+                    }
+                    else
+                    {
+                        <img src="@GetImg(Playmaking[i], AppData.CurrentPlayer.Badges.Playmaking[i])" class="card-img-top badge-on">
+                    }
+                    <div class="card-body align-self-center">
+                        <button type="button" class="btn btn-primary">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr/>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+        @for (int i = 0; i < Defending.Length; i++)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header align-self-center">
+                        @Defending[i]
+                    </div>
+                    @if (AppData.CurrentPlayer.Badges.Defending[i] == 0)
+                    {
+                        <img src="@GetImg(Defending[i], AppData.CurrentPlayer.Badges.Defending[i])" class="card-img-top badge-none">
+                    }
+                    else
+                    {
+                        <img src="@GetImg(Defending[i], AppData.CurrentPlayer.Badges.Defending[i])" class="card-img-top badge-on">
+                    }
+                    <div class="card-body align-self-center">
+                        <button type="button" class="btn btn-primary">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr/>
+    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+        @for (int i = 0; i < AthleticismRebounding.Length; i++)
+        {
+            <div class="col">
+                <div class="card">
+                    <div class="card-header align-self-center">
+                        @AthleticismRebounding[i]
+                    </div>
+                    @if (AppData.CurrentPlayer.Badges.AthleticismRebounding[i] == 0)
+                    {
+                        <img src="@GetImg(AthleticismRebounding[i], AppData.CurrentPlayer.Badges.AthleticismRebounding[i])" class="card-img-top badge-none">
+                    }
+                    else
+                    {
+                        <img src="@GetImg(AthleticismRebounding[i], AppData.CurrentPlayer.Badges.AthleticismRebounding[i])" class="card-img-top badge-on">
+                    }
+                    <div class="card-body align-self-center">
+                        <button type="button" class="btn btn-primary">Upgrade</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
 
-</div>
+
 
 @code {
+    private string[] InsideScoring = { "Fearless Finisher", "Acrobat", "Tear Dropper", "Post Spin Technician", "Dropstepper", "Putback Boss",
+    "Hook Specialist", "Posterizer", "Backdown Punisher", "Rise Up", "Giant Slayer", "Pro Touch", "Slithery Finisher", "Unstrippable",
+    "Mouse In The House", "Limitless takeoff", "Grace Under Pressure", "Fast Twitch" };
+
+    private string[] OutsideScoring = { "Catch & Shoot", "Corner Specialist", "Difficult Shots", "Mismatch Expert", "Lucky Number 7", "Blinders",
+    "Circus Threes", "Fade Ace", "Limitless Spot-Up", "Chef", "Rhythm Shooter", "Set Shooter", "Clutch Shooter", "Deadeye", "Sniper", "Stop & Pop", 
+    "Green Machine", "Hot Zone Hunter", "Volume Shooter", "Slippery Off-Ball" };
+
+    private string[] Playmaking = { "Ankle Breaker", "Hyperdrive", "Break Starter", "Glue Hands", "Dimer", "Quick Chain",
+    "Bail Out", "Downhill", "Dream Shake", "Handles For Days", "Needle Threader", "Quick First Step", "Space Creator", "Stop & Go",
+    "Tight Handles", "Unpluckable", "Bullet Passer", "Special Delivery", "Floor General", "Post Playmaker", "Triple Threat Juke" };
+
+    private string[] Defending = { "Pick Pocket", "Rim Protector", "Pick Dodger", "Chase Down Artist", "Clamps", "Defensive Leader",
+    "Interceptor", "Intimidator", "Off-Ball Pest", "Pogo Stick", "Post Lockdown", "Tireless Defender", "Ankle Braces", "Menace",
+    "Ball Stripper", "Hustler" };
+
+    private string[] AthleticismRebounding = { "Brick Wall", "Lob City Finisher", "Box", "Rebound Chaser", "Worm" };
+    
+
+    private string GetImg(string BadgeName, int BadgeLevel)
+    {
+        int level = BadgeLevel;
+        if(BadgeLevel == 0) { level = 2; }
+        string result = new string(BadgeName.ToCharArray().Where(c => !Char.IsWhiteSpace(c)).ToArray());
+        return "img/badges/" + result + level.ToString() + ".png";
+    }
+
+
 
 }

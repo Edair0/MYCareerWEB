@@ -201,7 +201,7 @@
             bool removed = db.Player.Remove(player);
             if (removed)
             {
-                if(player.Id == AppData.CurrentPlayer.Id)
+                if (AppData.CurrentPlayer != null && player.Id == AppData.CurrentPlayer.Id)
                 {
                     AppData.CurrentPlayer = null;
                 }

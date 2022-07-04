@@ -7,12 +7,11 @@ namespace MYCareerWEB.Code
     public static class AppData
     {
         public static Player? CurrentPlayer { get; set; }
-        public static List<Player> Players { get; set; }
+        public static List<Player> Players { get; set; } = new List<Player>();
 
         public static void Initialize()
         {
-            CurrentPlayer = null;
-            Players = new List<Player>();
+
         }
 
         public static Player CreatePlayer(string firstName, string nickName, string lastName, int position, int height)

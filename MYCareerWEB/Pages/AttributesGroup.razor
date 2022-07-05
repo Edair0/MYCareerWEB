@@ -1,0 +1,27 @@
+﻿@using MYCareerWEB.Code
+
+<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
+    @for (int i = 0; i < AttributeNames.Length; i++)
+    {
+        int id = i;
+        <div class="col">
+            <div class="card h-100 text-center">
+                <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
+                    @AttributeNames[i]
+                </div>
+                <div class="card-body align-self-center">
+                    <button class="btn-primary"><i class="fa fa-minus"></i></button>
+                    @PlayerAttributeData[id]
+                    <button class="btn-primary"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public string[] AttributeNames { get; set; }
+    [Parameter]
+    public int[] PlayerAttributeData { get; set; }
+}

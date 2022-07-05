@@ -203,14 +203,16 @@
                 AppData.RemovePlayer(player);
             }
             await db.SaveChanges();      
+            AppData.RefreshService.CallRequestRefresh();
         }
 
     }
 
-    private async Task SelectPlayer(Player player)
+    private Task SelectPlayer(Player player)
     {
         AppData.CurrentPlayer = player;
         AppData.RefreshService.CallRequestRefresh();
+        return Task.CompletedTask;
     }
 
     private void ToggleNewPlayerForm()

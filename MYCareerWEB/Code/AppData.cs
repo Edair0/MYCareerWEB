@@ -6,7 +6,7 @@ namespace MYCareerWEB.Code
 
     public static class AppData
     {
-        public static Player? CurrentPlayer { get; set; }
+        public static Player CurrentPlayer { get; set; }
         public static List<Player> Players { get; set; } = new List<Player>();
 
         public static RefreshService RefreshService = new RefreshService();

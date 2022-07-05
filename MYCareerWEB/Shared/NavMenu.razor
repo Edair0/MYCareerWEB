@@ -1,29 +1,31 @@
 ﻿@using MYCareerWEB.Code
 
-<div class="top-row ps-3 navbar navbar-dark">
+<div class="top-row ps-3 navbar navbar-dark pb-0">
     <div class="container-fluid">
-
-        <a class="navbar-brand" href="">MYCareerWEB</a>
+        <a class="navbar-brand fw-semibold fst-italic" href=""><span class="fas fa-basketball"></span> MYCareerWEB</a>
         <button title="Navigation menu" class="navbar-toggler shadow-none" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
-        @if (AppData.CurrentPlayer != null)
-        {
-            <label class="">
-                @AppData.CurrentPlayer.FirstName "@AppData.CurrentPlayer.NickName" @AppData.CurrentPlayer.LastName
-            </label>
-        }
     </div>
-
-
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    @if (AppData.CurrentPlayer != null)
+    {
+        <div class="top-row ps-3 navbar navbar-dark pt-0 pb-0">
+            <div class="col-2">
+                <span class="fas fa-user fa-xl d-flex justify-content-end align-items-center"></span>
+            </div>
+            <div class="col-10">
+                <label class="fw-semibold fst-italic align-items-start p-3"> @AppData.CurrentPlayer.FirstName "@AppData.CurrentPlayer.NickName" @AppData.CurrentPlayer.LastName</label>
+            </div>
+        </div>
+    }
 
-    <ul class="nav flex-row nav-fill">
+    <ul class="nav flex-row nav-fill pt-0">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Players">
-                <span class="fas fa-user fa-xl"></span>
+                <span class="fas fa-user-group fa-xl"></span>
                 <label class="text-nowrap">Players</label>
             </NavLink>
         </div>

@@ -17,19 +17,19 @@
                 <div class="card-body align-self-center h-100 d-flex align-items-center justify-content-center border-0">
                     @if (PlayerBadgeData[i] == 0)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost1[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i>@BadgeCost1[i]XP<i class="fas fa-arrow-up-long"></i> (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
                     }
                     @if (PlayerBadgeData[i] == 1)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost2[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost2[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
                     }
                     @if (PlayerBadgeData[i] == 2)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost3[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i>@BadgeCost3[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
                     }
                     @if (PlayerBadgeData[i] == 3)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost4[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost4[i]XP (@(AppData.CurrentPlayer.Badges.XP)XP)</button>
                     }
                     @if (PlayerBadgeData[i] == 4)
                     {

@@ -16,9 +16,9 @@ namespace MYCareerWEB.Code
 
         }
 
-        public static Player CreatePlayer(string firstName, string nickName, string lastName, int position, int height)
+        public static Player CreatePlayer(string fullName, int position, int height)
         {
-            return new Player(firstName, nickName, lastName, position, height);
+            return new Player(fullName, position, height);
         }
 
         public static void AddPlayer(Player player)

@@ -14,7 +14,7 @@
             <div class="col">
                 <div class="card h-100 text-center">
                     <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
-                        <h5 class="card-title">@player.FirstName "@player.NickName" @player.LastName</h5>
+                        <h5 class="card-title">@player.FullName</h5>
                     </div>
                     <div class="card-body">
                         <p class="card-text">@Positions[player.Position] @Heights[player.Height] </p>
@@ -44,24 +44,12 @@
     <div class="row">
         <div class="col-md-4">
             <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingFirstName" placeholder=" " @bind="FirstName">
-                <label style="color: #d7d7d7" for="floatingFirstName">First Name</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingNickName" placeholder=" " @bind="NickName">
-                <label style="color: #d7d7d7" for="floatingNickName">Nickname</label>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingLastName" placeholder=" " @bind="LastName">
-                <label style="color: #d7d7d7" for="floatingLastName">Last Name</label>
+                <input type="text" class="form-control" id="floatingFirstName" placeholder=" " @bind="FullName">
+                <label style="color: #d7d7d7" for="floatingFirstName">Full Name</label>
             </div>
         </div>
     </div>
-
+    
     <div class="row">
         <div class="col-md-4">
             <div class="mb-2">
@@ -74,66 +62,16 @@
                     <option value="5">Center</option>
                 </select>
             </div>
-            @if (Position == 1) // PG
-            {
-                <div class="mb-2">
-                    <select class="form-select" @bind="Height">
-                        <option value="0" selected>Height</option>
-                        @for (int i = 1; i <= 13; i++)
-                        {
-                            <option value="@i">@Heights[i]</option>
-                        }
-                    </select>
-                </div>
-            }
-            @if (Position == 2) // SG
-            {
-                <div class="mb-2">
-                    <select class="form-select" @bind="Height">
-                        <option value="0" selected>Height</option>
-                        @for (int i = 5; i <= 14; i++)
-                        {
-                            <option value="@i">@Heights[i]</option>
-                        }
-                    </select>
-                </div>
-            }
-            @if (Position == 3) // SF
-            {
-                <div class="mb-2">
-                    <select class="form-select" @bind="Height">
-                        <option value="0" selected>Height</option>
-                        @for (int i = 10; i <= 15; i++)
-                        {
-                            <option value="@i">@Heights[i]</option>
-                        }
-                    </select>
-                </div>
-            }
-            @if (Position == 4) // PF
-            {
-                <div class="mb-2">
-                    <select class="form-select" @bind="Height">
-                        <option value="0" selected>Height</option>
-                        @for (int i = 12; i <= 17; i++)
-                        {
-                            <option value="@i">@Heights[i]</option>
-                        }
-                    </select>
-                </div>
-            }
-            @if (Position == 5) // C
-            {
-                <div class="mb-2">
-                    <select class="form-select" @bind="Height">
-                        <option value="0" selected>Height</option>
-                        @for (int i = 14; i <= 20; i++)
-                        {
-                            <option value="@i">@Heights[i]</option>
-                        }
-                    </select>
-                </div>
-            }
+            @{ int minimum = 0; int maximum = 0; }
+            @if (Position == 1) { minimum = 0; maximum = 12; }
+            @if (Position == 2) { minimum = 4; maximum = 13; }
+            @if (Position == 3) { minimum = 9; maximum = 14; }
+            @if (Position == 4) { minimum = 11; maximum = 16; }
+            @if (Position == 5) { minimum = 13; maximum = 20; }
+            <div class="mb-2">
+                <input type="range" class="form-range" min="@minimum" max="@maximum" step="1" @bind="Height">
+                <label>@Heights[Height]</label>
+            </div>
         </div>
     </div>
     <div class="row">
@@ -148,14 +86,12 @@
 @code {
     private bool NewPlayerForm = false;
 
-    private string FirstName = string.Empty;
-    private string NickName = string.Empty;
-    private string LastName = string.Empty;
+    private string FullName = string.Empty;
     private int Position = 0;
     private int Height = 0;
 
     private string[] Positions = { "Position", "Point Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center" };
-    private string[] Heights = { "Height", "5'7\"", "5'8\"", "5'9\"", "5'10\"", "5'11\"", "6'0\"", "6'1\"", "6'2\"", "6'3\"", "6'4\"", "6'5\"",
+    private string[] Heights = { "5'7\"", "5'8\"", "5'9\"", "5'10\"", "5'11\"", "6'0\"", "6'1\"", "6'2\"", "6'3\"", "6'4\"", "6'5\"",
     "6'6\"", "6'7\"", "6'8\"", "6'9\"", "6'10\"", "6'11\"", "7'0\"", "7'1\"", "7'2\"", "7'3\"" };
 
     protected override async Task OnInitializedAsync()
@@ -169,12 +105,12 @@
 
     private async Task CreatePlayer()
     {
-        if(FirstName != string.Empty && NickName != string.Empty && LastName != string.Empty && Position != 0 && Height != 0)
+        if(FullName != string.Empty && Position != 0)
         {
 
             using (var db = await DbFactory.Create<AppDB>())
             {
-                db.Player.Add(AppData.CreatePlayer(FirstName, NickName, LastName, Position, Height));
+                db.Player.Add(AppData.CreatePlayer(FullName, Position, Height));
                 await db.SaveChanges();
             }
             using (var db = await DbFactory.Create<AppDB>())

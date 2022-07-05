@@ -8,15 +8,19 @@
 {
     <h3>PLAYERS:</h3>
     <hr />
-    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 row-cols-lg-2 row-cols-xl-3 g-2">   
+    <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-2">   
         @foreach (Player player in AppData.Players)
         {
             <div class="col">
-                <div class="card">
+                <div class="card h-100 text-center">
+                    <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
+                        <h5 class="card-title">@player.FirstName "@player.NickName" @player.LastName</h5>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">@player.Id @player.FirstName @player.LastName</h5>
-                        <p class="card-text">XP: @player.Attributes.XP</p>
-                        <div class="btn-group" role="group">
+                        <p class="card-text">@Positions[player.Position] @Heights[player.Height] </p>
+                        <p class="card-text">Attributes XP: @player.Attributes.XP</p>
+                        <p class="card-text">Badges XP: @player.Badges.XP</p>
+                        <div class="btn-group d-flex" role="group">
                             <a type="button" href="#" class="btn btn-primary" @onclick="() => SelectPlayer(player)">Select</a>
                             <button type="button" class="btn btn-primary" @onclick="() => DeletePlayer(player)">Delete</button>
                         </div>
@@ -206,6 +210,7 @@
     private async Task SelectPlayer(Player player)
     {
         AppData.CurrentPlayer = player;
+        AppData.RefreshService.CallRequestRefresh();
     }
 
     private void ToggleNewPlayerForm()

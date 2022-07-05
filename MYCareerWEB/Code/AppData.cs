@@ -9,6 +9,8 @@ namespace MYCareerWEB.Code
         public static Player? CurrentPlayer { get; set; }
         public static List<Player> Players { get; set; } = new List<Player>();
 
+        public static RefreshService RefreshService = new RefreshService();
+
         public static void Initialize()
         {
 
@@ -29,7 +31,15 @@ namespace MYCareerWEB.Code
             Players.Remove(player);
         }
 
-
-
     }
+
+    public class RefreshService
+    {
+        public event Action RefreshRequested;
+        public void CallRequestRefresh()
+        {
+            RefreshRequested?.Invoke();
+        }
+    }
+
 }

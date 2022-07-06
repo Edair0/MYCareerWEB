@@ -1,18 +1,21 @@
-﻿@using MYCareerWEB.Code
+﻿@using IndexedDB.Blazor
+@using MYCareerWEB.Code;
+@using MYCareerWEB.Code.PlayerData
+@inject IIndexedDbFactory DbFactory
 
 <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
     @for (int i = 0; i < AttributeNames.Length; i++)
     {
         int id = i;
+        int cost = CalculateCost(PlayerAttributeData[id], ModifierData[i, 0], ModifierData[i, 1], ModifierData[i, 2]);
         <div class="col">
             <div class="card h-100 text-center">
                 <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                     @AttributeNames[i]
                 </div>
                 <div class="card-body align-self-center">
-                    <button class="btn-primary"><i class="fa fa-minus"></i></button>
-                    @PlayerAttributeData[id]
-                    <button class="btn-primary"><i class="fa fa-plus"></i></button>
+                    <label class="pe-1">@PlayerAttributeData[id]</label>
+                    <button class="btn-primary" @onclick="() => UpgradeAttribute(id, cost)"><i class="fa fa-plus"></i> @(cost)XP</button>
                 </div>
             </div>
         </div>
@@ -24,9 +27,44 @@
     public string[] AttributeNames { get; set; }
     [Parameter]
     public int[] PlayerAttributeData { get; set; }
+    [Parameter]
+    public float[,] ModifierData { get; set; }
 
-    private async Task UpgradeAttribute(int id)
+    //protected override void OnInitialized()
+    //{
+    //    AppData.RefreshService.RefreshRequested += RefreshMe;
+    //    base.OnInitialized();
+    //}
+
+    //private void RefreshMe()
+    //{
+    //    StateHasChanged();
+    //}
+
+    private async Task UpgradeAttribute(int id, int cost)
     {
+        int currentLevel = PlayerAttributeData[id];
+
+        if (AppData.CurrentPlayer.Attributes.XP >= cost && cost != 0)
+        {
+            PlayerAttributeData[id] += 1;
+            AppData.CurrentPlayer.Attributes.XP -= cost;
+        }
+
+        using (var db = await this.DbFactory.Create<AppDB>())
+        {
+            Player EditedPlayer = db.Player.Single(x => x.Id == AppData.CurrentPlayer.Id);
+            EditedPlayer.Attributes = AppData.CurrentPlayer.Attributes;
+            await db.SaveChanges();
+        }
+        AppData.RefreshService.CallRequestRefresh();
+    }
+
+    private int CalculateCost(int CurrentStat, float DifficultyMod, float HeightMod, float WeightMod)
+    {
+        int BaseCost = 10;
+        float ScallingFactor = 1.06f;
+        return (int)Math.Ceiling(((BaseCost * Math.Pow(ScallingFactor, CurrentStat)) / 2) * DifficultyMod * HeightMod * WeightMod);
 
     }
 }

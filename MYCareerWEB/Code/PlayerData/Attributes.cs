@@ -1,4 +1,6 @@
-﻿namespace MYCareerWEB.Code.PlayerData
+﻿using System;
+
+namespace MYCareerWEB.Code.PlayerData
 {
     public class Attributes
     {
@@ -10,11 +12,16 @@
 
         public Attributes()
         {
-            XP = 0;
+            XP = 100000;
             Offense = new int[18];
             Defense = new int[6];
             Athleticism = new int[8];
             Mental = new int[6];
+
+            Array.Fill(Offense, 25);
+            Array.Fill(Defense, 25);
+            Array.Fill(Athleticism, 25);
+            Array.Fill(Mental, 25);
         }
     }
 

@@ -6,18 +6,18 @@
 
 @if(AppData.CurrentPlayer != null)
 {
-    <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Offense"></AttributesGroup>
+    <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Offense" ModifierData="AppData.Modifiers.OffenseMults"></AttributesGroup>
     <hr />
-    <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Defense"></AttributesGroup>
+    <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Defense" ModifierData="AppData.Modifiers.DefenseMults"></AttributesGroup>
     <hr />
-    <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Athleticism"></AttributesGroup>
+    <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Athleticism" ModifierData="AppData.Modifiers.AthleticismMults"></AttributesGroup>
     <hr />
-    <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Mental"></AttributesGroup>
+    <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Mental" ModifierData="AppData.Modifiers.MentalMults"></AttributesGroup>
 }
 
 
 @code {
-    private string[] Offense = { "Driving Layup", "Post Fade", "Post Hook", "Post Control", "Draw Foul", "Close Shot", "Mid Range Shot", "Three Point Shot", "Free Throw", "Ball Handle", "Pass IQ", "Pass Accuracy", "Offensive Rebound", "Standing Dunk", "Driving Dunk", "Shot IQ", "Pass Vision", "Hands" };
+    private string[] Offense = { "Driving Layup", "Post Fade", "Post Hook", "Post Control", "Draw Foul", "Close Shot", "Mid Range Shot", "Three Point Shot", "Free Throw", "Ball Handle", "Pass IQ", "Pass Accuracy", "Offensive Rebound", "Standing Dunk", "Driving Dunk", "Shot IQ", "Pass Vision", "Hands" };  
     private string[] Defense = { "Defensive Rebound", "Interior Defense", "Perimeter Defense", "Block", "Steal", "Shot Contest" };
     private string[] Athleticism = { "Lateral Quickness", "Speed", "Speed With Ball", "Acceleration", "Vertical", "Strength", "Stamina", "Hustle" };
     private string[] Mental = { "Pass Perception", "Defensive Consistency", "Help Defense IQ", "Offensive Consistency", "Pick And Roll Defense IQ", "Intangibles" };

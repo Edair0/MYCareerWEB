@@ -8,7 +8,7 @@ namespace MYCareerWEB.Code
     {
         public static Player CurrentPlayer { get; set; }
         public static List<Player> Players { get; set; } = new List<Player>();
-
+        public static Modifiers Modifiers { get; set; } = new Modifiers();
         public static RefreshService RefreshService = new RefreshService();
 
         public static void Initialize()

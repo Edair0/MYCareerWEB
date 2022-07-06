@@ -1,18 +1,28 @@
 ﻿@using MYCareerWEB.Code
-<div class="top-row ps-3 navbar navbar-dark">
+
+<div class="top-row ps-3 navbar navbar-dark pb-0">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">MYCareerWEB</a>
+        <a class="navbar-brand fw-semibold fst-italic" href=""><span class="fas fa-basketball"></span> MYCareerWEB</a>
         <button title="Navigation menu" class="navbar-toggler shadow-none" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
-        </button>     
-    </div>  
+        </button>
+    </div>
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    <ul class="nav flex-row nav-fill">
+    @if (AppData.CurrentPlayer != null)
+    {
+        <div class="top-row ps-3 navbar navbar-dark pt-0 pb-0">
+            <label class="fw-semibold fst-italic align-items-start p-3"><span class="fas fa-user fa-xl justify-content-end align-items-center"></span> @AppData.CurrentPlayer.FullName</label>
+            <label class="fw-semibold fst-italic align-items-start p-3"> Attribute XP: @AppData.CurrentPlayer.Attributes.XP</label>
+            <label class="fw-semibold fst-italic align-items-start p-3"> Badge XP: @AppData.CurrentPlayer.Badges.XP</label>
+        </div>
+    }
+
+    <ul class="nav flex-row nav-fill pt-0">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Players">
-                <span class="fas fa-user fa-xl"></span>
+                <span class="fas fa-user-group fa-xl"></span>
                 <label class="text-nowrap">Players</label>
             </NavLink>
         </div>
@@ -46,10 +56,23 @@
 @code {
     private bool collapseNavMenu = true;
 
-    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    protected override void OnInitialized()
+    {
+        AppData.RefreshService.RefreshRequested += RefreshMe;
+        base.OnInitialized();
+    }
+
+    private void RefreshMe()
+    {
+        StateHasChanged();
+    }
 
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
     }
+
+
 }

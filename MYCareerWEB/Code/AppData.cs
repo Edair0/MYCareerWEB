@@ -6,17 +6,19 @@ namespace MYCareerWEB.Code
 
     public static class AppData
     {
-        public static Player? CurrentPlayer { get; set; }
+        public static Player CurrentPlayer { get; set; }
         public static List<Player> Players { get; set; } = new List<Player>();
+        public static Modifiers Modifiers { get; set; } = new Modifiers();
+        public static RefreshService RefreshService = new RefreshService();
 
         public static void Initialize()
         {
 
         }
 
-        public static Player CreatePlayer(string firstName, string nickName, string lastName, int position, int height)
+        public static Player CreatePlayer(string fullName, int position, int height)
         {
-            return new Player(firstName, nickName, lastName, position, height);
+            return new Player(fullName, position, height);
         }
 
         public static void AddPlayer(Player player)
@@ -29,7 +31,15 @@ namespace MYCareerWEB.Code
             Players.Remove(player);
         }
 
-
-
     }
+
+    public class RefreshService
+    {
+        public event Action RefreshRequested;
+        public void CallRequestRefresh()
+        {
+            RefreshRequested?.Invoke();
+        }
+    }
+
 }

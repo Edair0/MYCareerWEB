@@ -14,26 +14,26 @@
                 </div>
                 @if (PlayerBadgeData[i] == 0) { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-none"> }
                 else { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-on"> }
-                <div class="card-body align-self-center">
+                <div class="card-body align-self-center h-100 d-flex align-items-center justify-content-center border-0">
                     @if (PlayerBadgeData[i] == 0)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost1[i]XP</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost1[i]XP</button>
                     }
                     @if (PlayerBadgeData[i] == 1)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost2[i]XP</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost2[i]XP</button>
                     }
                     @if (PlayerBadgeData[i] == 2)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost3[i]XP</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost3[i]XP</button>
                     }
                     @if (PlayerBadgeData[i] == 3)
                     {
-                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)">Upgrade @BadgeCost4[i]XP</button>
+                        <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost4[i]XP</button>
                     }
                     @if (PlayerBadgeData[i] == 4)
                     {
-                        <button type="button" class="btn btn-primary ripple disabled">MAX</button>
+                        <button type="button" class="btn btn-primary" disabled>MAX</button>
                     }
                 </div>
             </div>
@@ -54,6 +54,17 @@
     public int[] BadgeCost4 { get; set; }
     [Parameter]
     public int[] PlayerBadgeData { get; set; }
+
+    //protected override void OnInitialized()
+    //{
+    //    AppData.RefreshService.RefreshRequested += RefreshMe;
+    //    base.OnInitialized();
+    //}
+
+    //private void RefreshMe()
+    //{
+    //    StateHasChanged();
+    //}
 
     private string GetImg(string BadgeName, int BadgeLevel)
     {
@@ -83,6 +94,7 @@
             EditedPlayer.Badges = AppData.CurrentPlayer.Badges;
             await db.SaveChanges();
         }
+        AppData.RefreshService.CallRequestRefresh();
     }
 
 }

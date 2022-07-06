@@ -45,6 +45,13 @@ a, .btn-link {
         border-color: darkorange;
     }
 
+    .btn-primary:disabled {
+        color: rebeccapurple;
+        background-color: #212529;
+        border-color: rebeccapurple;
+        opacity: 1;
+    }
+
 .btn-secondary {
     color: #d7d7d7;
     background-color: #343a40;

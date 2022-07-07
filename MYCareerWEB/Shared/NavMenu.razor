@@ -1,6 +1,6 @@
 ﻿@using MYCareerWEB.Code
 
-<div class="top-row ps-3 navbar navbar-dark pb-0">
+<div class="top-row ps-2 navbar navbar-dark pb-0">
     <div class="container-fluid">
         <a class="navbar-brand fw-semibold fst-italic" href=""><span class="fas fa-basketball"></span> MYCareerWEB</a>
         <button title="Navigation menu" class="navbar-toggler shadow-none" @onclick="ToggleNavMenu">
@@ -10,41 +10,40 @@
 </div>
 
 <div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
-    @if (AppData.CurrentPlayer != null)
-    {
+@if (AppData.CurrentPlayer != null)
+{
         <div class="top-row ps-3 navbar navbar-dark pt-0 pb-0">
-            <label class="fw-semibold fst-italic align-items-start p-3"><span class="fas fa-user fa-xl justify-content-end align-items-center"></span> @AppData.CurrentPlayer.FullName</label>
-            <label class="fw-semibold fst-italic align-items-start p-3"> Attribute XP: @AppData.CurrentPlayer.Attributes.XP</label>
-            <label class="fw-semibold fst-italic align-items-start p-3"> Badge XP: @AppData.CurrentPlayer.Badges.XP</label>
+            <label style="" class="fw-semibold fst-italic align-items-start p-2 d-flex align-items-center text-center"><span class="fas fa-user fa-xl pe-3"></span> @AppData.CurrentPlayer.FullName</label>
+            <label class="fw-semibold fst-italic align-items-start p-2"> Attribute XP: @AppData.CurrentPlayer.Attributes.XP</label>
+            <label class="fw-semibold fst-italic align-items-start p-2"> Badge XP: @AppData.CurrentPlayer.Badges.XP</label>
         </div>
-    }
-
+}
     <ul class="nav flex-row nav-fill pt-0">
-        <div class="nav-item px-3">
+        <div class="nav-item px-2">
             <NavLink class="nav-link" href="Players">
                 <span class="fas fa-user-group fa-xl"></span>
                 <label class="text-nowrap">Players</label>
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-2">
             <NavLink class="nav-link" href="NewMatch">
                 <span class="fas fa-basketball fa-xl"></span>
                 <label class="text-nowrap">New Match</label>
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-2">
             <NavLink class="nav-link" href="Attributes">
                 <span class="fas fa-chart-pie fa-xl"></span>
                 <label class="text-nowrap">Attributes</label>
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-2">
             <NavLink class="nav-link" href="Badges">
                 <span class="fas fa-shield fa-xl"></span>
                 <label class="text-nowrap">Badges</label>
             </NavLink>
         </div>
-        <div class="nav-item px-3">
+        <div class="nav-item px-2">
             <NavLink class="nav-link" href="HotZones">
                 <span class="fas fa-fire fa-xl"></span>
                 <label class="text-nowrap">Hot Zones</label>
@@ -52,6 +51,8 @@
         </div>
     </ul>
 </div>
+
+
 
 @code {
     private bool collapseNavMenu = true;

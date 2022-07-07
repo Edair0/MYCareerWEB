@@ -14,7 +14,7 @@
                 </div>
                 @if (PlayerBadgeData[i] == 0) { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-none"> }
                 else { <img src="@GetImg(BadgeNames[i], PlayerBadgeData[i])" class="card-img-top badge-on"> }
-                <div class="card-body align-self-center h-100 d-flex align-items-center justify-content-center border-0">
+                <div class="card-body align-self-center h-100 d-flex align-items-center justify-content-center border-0 noselect">
                     @if (PlayerBadgeData[i] == 0)
                     {
                         <button type="button" class="btn btn-primary ripple" @onclick="() => UpgradeBadge(id)"><i class="fas fa-arrow-up-long"></i> @BadgeCost1[i]XP</button>

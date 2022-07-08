@@ -79,6 +79,12 @@ a, .btn-link {
         border-color: darkorange;
     }
 
+.btn-check:active + .btn, .btn-check:checked + .btn, .btn.active, .btn.show, .btn:active {
+    color: darkorange;
+    background-color: #343a40;
+    border-color: darkorange;
+}
+
 .form-control, .form-select {
     color: #d7d7d7;
     background-color: #343a40;

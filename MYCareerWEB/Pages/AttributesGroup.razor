@@ -65,6 +65,5 @@
         int BaseCost = 10;
         float ScallingFactor = 1.06f;
         return (int)Math.Ceiling(((BaseCost * Math.Pow(ScallingFactor, CurrentStat)) / 2) * DifficultyMod * HeightMod * WeightMod);
-
     }
 }

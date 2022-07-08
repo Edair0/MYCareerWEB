@@ -2,12 +2,11 @@
 @using IndexedDB.Blazor
 @using MYCareerWEB.Code;
 @using MYCareerWEB.Code.PlayerData
+@using System.Globalization
 @inject IIndexedDbFactory DbFactory
 
 @if (!NewPlayerForm)
 {
-    <h3>PLAYERS:</h3>
-    <hr />
     <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 g-2">   
         @foreach (Player player in AppData.Players)
         {
@@ -17,7 +16,7 @@
                         <h5 class="card-title">@player.FullName</h5>
                     </div>
                     <div class="card-body">
-                        <p class="card-text">@Positions[player.Position] @Heights[player.Height] </p>
+                        <p class="card-text">@Positions[player.Position] @String.Format(CultureInfo.InvariantCulture, "{0:0.00}", (float)player.Height / 100)M </p>
                         <p class="card-text">Attributes XP: @player.Attributes.XP</p>
                         <p class="card-text">Badges XP: @player.Badges.XP</p>
                         <div class="btn-group d-flex" role="group">
@@ -39,8 +38,6 @@
 
 @if (NewPlayerForm)
 {
-    <h3>PLAYERS:</h3>
-    <hr />
     <div class="row">
         <div class="col-md-4">
             <div class="form-floating mb-2">
@@ -62,15 +59,15 @@
                     <option value="5">Center</option>
                 </select>
             </div>
-            @{ int minimum = 0; int maximum = 0; }
-            @if (Position == 1) { minimum = 0; maximum = 12; }
-            @if (Position == 2) { minimum = 4; maximum = 13; }
-            @if (Position == 3) { minimum = 9; maximum = 14; }
-            @if (Position == 4) { minimum = 11; maximum = 16; }
-            @if (Position == 5) { minimum = 13; maximum = 20; }
+            @{ int minimum = 163; int maximum = 231; }
+            @if (Position == 1) { minimum = 163; maximum = 201; }
+            @if (Position == 2) { minimum = 183; maximum = 206; }
+            @if (Position == 3) { minimum = 193; maximum = 211; }
+            @if (Position == 4) { minimum = 196; maximum = 213; }
+            @if (Position == 5) { minimum = 198; maximum = 231; }
             <div class="mb-2">
-                <input type="range" class="form-range" min="@minimum" max="@maximum" step="1" @bind="Height">
-                <label>@Heights[Height]</label>
+                <input type="range" class="form-range" min="@minimum" max="@maximum" step="1" @bind="Height" @bind:event="oninput">
+                <label>@String.Format(CultureInfo.InvariantCulture, "{0:0.00}", (float)Height / 100)M</label>
             </div>
         </div>
     </div>
@@ -91,8 +88,6 @@
     private int Height = 0;
 
     private string[] Positions = { "Position", "Point Guard", "Shooting Guard", "Small Forward", "Power Forward", "Center" };
-    private string[] Heights = { "5'7\"", "5'8\"", "5'9\"", "5'10\"", "5'11\"", "6'0\"", "6'1\"", "6'2\"", "6'3\"", "6'4\"", "6'5\"",
-    "6'6\"", "6'7\"", "6'8\"", "6'9\"", "6'10\"", "6'11\"", "7'0\"", "7'1\"", "7'2\"", "7'3\"" };
 
     protected override async Task OnInitializedAsync()
     {
@@ -154,5 +149,10 @@
     private void ToggleNewPlayerForm()
     {
         NewPlayerForm = !NewPlayerForm;
+    }
+
+    private void Refresh()
+    {
+        StateHasChanged();
     }
 }

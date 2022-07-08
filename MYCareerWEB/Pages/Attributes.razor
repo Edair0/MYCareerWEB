@@ -1,24 +1,56 @@
 ﻿@page "/Attributes"
 @using MYCareerWEB.Code
 
-<h3>Attributes</h3>
-<hr/>
-
 @if(AppData.CurrentPlayer != null)
 {
-    <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Offense" ModifierData="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    <div class="row row-cols-4 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4 g-1">
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option1" @onclick="() => ChangeAttributeGroup(1)">
+            <label class="btn btn-secondary" for="option1">Offense</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option2" @onclick="() => ChangeAttributeGroup(2)">
+            <label class="btn btn-secondary" for="option2">Defense</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option3" @onclick="() => ChangeAttributeGroup(3)">
+            <label class="btn btn-secondary" for="option3">Athleticism</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option4" @onclick="() => ChangeAttributeGroup(4)">
+            <label class="btn btn-secondary" for="option4">Mental</label>
+        </div>
+    </div>
+
     <hr />
-    <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Defense" ModifierData="AppData.Modifiers.DefenseMults"></AttributesGroup>
-    <hr />
-    <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Athleticism" ModifierData="AppData.Modifiers.AthleticismMults"></AttributesGroup>
-    <hr />
-    <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Mental" ModifierData="AppData.Modifiers.MentalMults"></AttributesGroup>
+    if (SelectedGroup == 1)
+    {
+        <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Offense" ModifierData="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 2)
+    {
+        <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Defense" ModifierData="AppData.Modifiers.DefenseMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 3)
+    {
+        <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Athleticism" ModifierData="AppData.Modifiers.AthleticismMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 4)
+    {
+        <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Mental" ModifierData="AppData.Modifiers.MentalMults"></AttributesGroup>
+    }
 }
 
 
 @code {
+    private int SelectedGroup = 0;
     private string[] Offense = { "Driving Layup", "Post Fade", "Post Hook", "Post Control", "Draw Foul", "Close Shot", "Mid Range Shot", "Three Point Shot", "Free Throw", "Ball Handle", "Pass IQ", "Pass Accuracy", "Offensive Rebound", "Standing Dunk", "Driving Dunk", "Shot IQ", "Pass Vision", "Hands" };  
     private string[] Defense = { "Defensive Rebound", "Interior Defense", "Perimeter Defense", "Block", "Steal", "Shot Contest" };
     private string[] Athleticism = { "Lateral Quickness", "Speed", "Speed With Ball", "Acceleration", "Vertical", "Strength", "Stamina", "Hustle" };
     private string[] Mental = { "Pass Perception", "Defensive Consistency", "Help Defense IQ", "Offensive Consistency", "Pick And Roll Defense IQ", "Intangibles" };
+
+    private void ChangeAttributeGroup(int GroupID)
+    {
+        SelectedGroup = GroupID;
+    }
 }

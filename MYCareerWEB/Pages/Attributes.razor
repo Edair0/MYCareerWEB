@@ -25,29 +25,25 @@
 
     if (SelectedGroup == 1)
     {
-        <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Offense" ModifierData="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup AttributeNames="Offense" PlayerAttributeData="AppData.CurrentPlayer.Attributes" ModifierData="AppData.Modifiers.OffenseMults"></AttributesGroup>
     }
     if (SelectedGroup == 2)
     {
-        <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Defense" ModifierData="AppData.Modifiers.DefenseMults"></AttributesGroup>
+        <AttributesGroup AttributeNames="Defense" PlayerAttributeData="AppData.CurrentPlayer.Attributes" ModifierData="AppData.Modifiers.DefenseMults"></AttributesGroup>
     }
     if (SelectedGroup == 3)
     {
-        <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Athleticism" ModifierData="AppData.Modifiers.AthleticismMults"></AttributesGroup>
+        <AttributesGroup AttributeNames="Athleticism" PlayerAttributeData="AppData.CurrentPlayer.Attributes" ModifierData="AppData.Modifiers.AthleticismMults"></AttributesGroup>
     }
     if (SelectedGroup == 4)
     {
-        <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes.Mental" ModifierData="AppData.Modifiers.MentalMults"></AttributesGroup>
+        <AttributesGroup AttributeNames="Mental" PlayerAttributeData="AppData.CurrentPlayer.Attributes" ModifierData="AppData.Modifiers.MentalMults"></AttributesGroup>
     }
 }
 
 
 @code {
     private int SelectedGroup = 0;
-    private string[] Offense = { "Driving Layup", "Post Fade", "Post Hook", "Post Control", "Draw Foul", "Close Shot", "Mid Range Shot", "Three Point Shot", "Free Throw", "Ball Handle", "Pass IQ", "Pass Accuracy", "Offensive Rebound", "Standing Dunk", "Driving Dunk", "Shot IQ", "Pass Vision", "Hands" };  
-    private string[] Defense = { "Defensive Rebound", "Interior Defense", "Perimeter Defense", "Block", "Steal", "Shot Contest" };
-    private string[] Athleticism = { "Lateral Quickness", "Speed", "Speed With Ball", "Acceleration", "Vertical", "Strength", "Stamina", "Hustle" };
-    private string[] Mental = { "Pass Perception", "Defensive Consistency", "Help Defense IQ", "Offensive Consistency", "Pick And Roll Defense IQ", "Intangibles" };
 
     private void ChangeAttributeGroup(int GroupID)
     {

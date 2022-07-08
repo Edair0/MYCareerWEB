@@ -11,6 +11,8 @@ namespace MYCareerWEB.Code
         public static Modifiers Modifiers { get; set; } = new Modifiers();
         public static RefreshService RefreshService = new RefreshService();
 
+        public static Locale Locale = new Locale();
+
         public static void Initialize()
         {
 

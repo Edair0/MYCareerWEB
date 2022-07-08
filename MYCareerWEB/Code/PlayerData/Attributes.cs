@@ -4,24 +4,82 @@ namespace MYCareerWEB.Code.PlayerData
 {
     public class Attributes
     {
-        public int XP { get; set; }
-        public int[] Offense { get; set; }
-        public int[] Defense { get; set; }
-        public int[] Athleticism { get; set; }
-        public int[] Mental { get; set; }
+        public OffenseGroup Offense { get; set; }
+        public DefenseGroup Defense { get; set; }
+        public AthleticismGroup Athleticism { get; set; }
+        public MentalGroup Mental { get; set; }
 
         public Attributes()
         {
-            XP = 100000;
-            Offense = new int[18];
-            Defense = new int[6];
-            Athleticism = new int[8];
-            Mental = new int[6];
+            Offense = new OffenseGroup();
+            Defense = new DefenseGroup();
+            Athleticism = new AthleticismGroup();
+            Mental = new MentalGroup();
+        }
+    }
 
-            Array.Fill(Offense, 25);
-            Array.Fill(Defense, 25);
-            Array.Fill(Athleticism, 25);
-            Array.Fill(Mental, 25);
+    public class OffenseGroup
+    {
+        public Attribute Post { get; set; }
+        public Attribute Inside { get; set; }
+        public Attribute Shooting { get; set; }
+        public Attribute Playmaking { get; set; }
+
+        public OffenseGroup()
+        {
+            Post = new Attribute(4);
+            Inside = new Attribute(4);
+            Shooting = new Attribute(5);
+            Playmaking = new Attribute(5);
+        }
+    }
+
+    public class DefenseGroup
+    {
+        public Attribute Contesting { get; set; }
+        public Attribute Defending { get; set; }
+
+        public DefenseGroup()
+        {
+            Contesting = new Attribute(3);
+            Defending = new Attribute(3);
+        }
+    }
+
+    public class AthleticismGroup
+    {
+        public Attribute Movement { get; set; }
+        public Attribute Physical { get; set; }
+
+        public AthleticismGroup()
+        {
+            Movement = new Attribute(4);
+            Physical = new Attribute(4);
+        }
+    }
+
+    public class MentalGroup
+    {
+        public Attribute DefenseIQ { get; set; }
+        public Attribute Consistency { get; set; }
+
+        public MentalGroup()
+        {
+            DefenseIQ = new Attribute(3);
+            Consistency = new Attribute(3);
+        }
+    }
+
+    public class Attribute
+    {
+        public int XP { get; set; }
+        public int[] Inside { get; set; }
+
+        public Attribute(int AttributesNumer)
+        {
+            XP = 0;
+            Inside = new int[AttributesNumer];
+            Array.Fill(Inside, 25);
         }
     }
 
@@ -78,4 +136,6 @@ namespace MYCareerWEB.Code.PlayerData
         PickAndRollDefenseIQ = 4,
         Intangibles = 5,
     }
+
+    
 }

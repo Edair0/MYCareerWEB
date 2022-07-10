@@ -21,9 +21,10 @@ main[b-v1g2cdbao8] {
     .sidebar[b-v1g2cdbao8] {
         width: 250px;
         height: 100vh;
-        min-height: 430px;
+        min-height: max-content;
         position: sticky;
         top: 0;
+        overflow: auto;
     }
 }
 /* /Shared/NavMenu.razor.rz.scp.css */

@@ -13,9 +13,11 @@
                 <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
                     @Names[i]
                 </div>
-                <div class="card-body align-self-center">
-                    <label class="pe-1">@Data[id]</label>
-                    <button class="btn btn-primary ripple" @onclick="() => UpgradeAttribute(id, cost)"><i class="fa fa-plus"></i> @(cost)XP</button>
+                <div class="card-body">
+                    <div class="progress w-100">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated bg-black" role="progressbar" style="width: @(Data[id]+1)%;">@Data[id]</div>
+                    </div>
+                    <button class="btn btn-primary ripple mt-1 w-100" @onclick="() => UpgradeAttribute(id, cost)"><i class="fa fa-plus"></i> @(cost)XP</button>
                 </div>
             </div>
         </div>
@@ -30,16 +32,16 @@
     [Parameter]
     public float[,] Modifiers { get; set; }
 
-    //protected override void OnInitialized()
-    //{
-    //    AppData.RefreshService.RefreshRequested += RefreshMe;
-    //    base.OnInitialized();
-    //}
+    protected override void OnInitialized()
+    {
+        AppData.RefreshService.RefreshRequested += RefreshMe;
+        base.OnInitialized();
+    }
 
-    //private void RefreshMe()
-    //{
-    //    StateHasChanged();
-    //}
+    private void RefreshMe()
+    {
+        StateHasChanged();
+    }
 
     private async Task UpgradeAttribute(int id, int cost)
     {

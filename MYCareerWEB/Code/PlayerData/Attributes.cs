@@ -17,6 +17,16 @@ namespace MYCareerWEB.Code.PlayerData
             Defense = new DefenseGroup();
             Athleticism = new AthleticismGroup();
             Mental = new MentalGroup();
+            Offense.Inside[0] = 100000;
+            Offense.Post[0] = 100000;
+            Offense.Shooting[0] = 100000;
+            Offense.Playmaking[0] = 100000;
+            Defense.Defending[0] = 100000;
+            Defense.Contesting[0] = 100000;
+            Athleticism.Movement[0] = 100000;
+            Athleticism.Physical[0] = 100000;
+            Mental.DefenseIQ[0] = 100000;
+            Mental.Consistency[0] = 100000;
         }
     }
 

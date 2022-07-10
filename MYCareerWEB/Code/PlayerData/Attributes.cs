@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Reflection.Emit;
+using System.Runtime.ConstrainedExecution;
 
 namespace MYCareerWEB.Code.PlayerData
 {
@@ -17,17 +18,38 @@ namespace MYCareerWEB.Code.PlayerData
             Defense = new DefenseGroup();
             Athleticism = new AthleticismGroup();
             Mental = new MentalGroup();
-            Offense.Inside[0] = 100000;
-            Offense.Post[0] = 100000;
-            Offense.Shooting[0] = 100000;
-            Offense.Playmaking[0] = 100000;
-            Defense.Defending[0] = 100000;
-            Defense.Contesting[0] = 100000;
-            Athleticism.Movement[0] = 100000;
-            Athleticism.Physical[0] = 100000;
-            Mental.DefenseIQ[0] = 100000;
-            Mental.Consistency[0] = 100000;
+            SetStartingStats(25);
+            SetStartingXP(100000);
         }
+
+        public void SetStartingStats(int Stat)
+        {
+            Array.Fill(Offense.Inside, Stat);
+            Array.Fill(Offense.Post, Stat);
+            Array.Fill(Offense.Shooting, Stat);
+            Array.Fill(Offense.Playmaking, Stat);
+            Array.Fill(Defense.Contesting, Stat);
+            Array.Fill(Defense.Defending, Stat);
+            Array.Fill(Athleticism.Movement, Stat);
+            Array.Fill(Athleticism.Physical, Stat);
+            Array.Fill(Mental.DefenseIQ, Stat);
+            Array.Fill(Mental.Consistency, Stat);
+        }
+
+        public void SetStartingXP(int XP)
+        {
+            Offense.Inside[0] = XP;
+            Offense.Post[0] = XP;
+            Offense.Shooting[0] = XP;
+            Offense.Playmaking[0] = XP;
+            Defense.Defending[0] = XP;
+            Defense.Contesting[0] = XP;
+            Athleticism.Movement[0] = XP;
+            Athleticism.Physical[0] = XP;
+            Mental.DefenseIQ[0] = XP;
+            Mental.Consistency[0] = XP;
+        }
+
     }
 
     public class OffenseGroup
@@ -43,11 +65,6 @@ namespace MYCareerWEB.Code.PlayerData
             Inside = new int[4 + 1];
             Shooting = new int[5 + 1];
             Playmaking = new int[5 + 1];
-            Array.Fill(Post, 25);
-            Array.Fill(Inside, 25);
-            Array.Fill(Shooting, 25);
-            Array.Fill(Playmaking, 25);
-            Post[0] = 0; Inside[0] = 0; Shooting[0] = 0; Playmaking[0] = 0;
         }
     }
 
@@ -60,9 +77,7 @@ namespace MYCareerWEB.Code.PlayerData
         {
             Contesting = new int[3 + 1];
             Defending = new int[3 + 1];
-            Array.Fill(Contesting, 25);
-            Array.Fill(Defending, 25);
-            Contesting[0] = 0; Defending[0] = 0;
+
         }
     }
 
@@ -75,9 +90,7 @@ namespace MYCareerWEB.Code.PlayerData
         {
             Movement = new int[4 + 1];
             Physical = new int[4 + 1];
-            Array.Fill(Movement, 25);
-            Array.Fill(Physical, 25);
-            Movement[0] = 0; Physical[0] = 0;
+
         }
     }
 
@@ -90,9 +103,6 @@ namespace MYCareerWEB.Code.PlayerData
         {
             DefenseIQ = new int[3 + 1];
             Consistency = new int[3 + 1];
-            Array.Fill(DefenseIQ, 25);
-            Array.Fill(Consistency, 25);
-            DefenseIQ[0] = 0; Consistency[0] = 0;
         }
     }
 

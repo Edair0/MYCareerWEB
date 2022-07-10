@@ -3,10 +3,13 @@
 @using MYCareerWEB.Code.PlayerData
 @inject IIndexedDbFactory DbFactory
 
+
+<hr />
+<label>@(Data[0])XP</label>
 <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-5 g-1">
-    @for (int i = 1; i < Names.Length; i++)
+    @for (int i = 0; i < Names.Length; i++)
     {
-        int id = i;
+        int id = i + 1;
         int cost = CalculateCost(Data[id], Modifiers[i, 0], Modifiers[i, 1], Modifiers[i, 2]);
         <div class="col">
             <div class="card h-100 text-center">

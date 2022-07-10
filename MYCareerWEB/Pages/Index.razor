@@ -25,7 +25,7 @@ else
     {
         using (var db = await DbFactory.Create<AppDB>())
         {
-            db.Player.Clear();
+            db.Players.Clear();
             await db.SaveChanges();
         }
 

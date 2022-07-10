@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Reflection.Emit;
 
 namespace MYCareerWEB.Code.PlayerData
 {
@@ -20,69 +22,69 @@ namespace MYCareerWEB.Code.PlayerData
 
     public class OffenseGroup
     {
-        public AttributeData Post { get; set; }
-        public AttributeData Inside { get; set; }
-        public AttributeData Shooting { get; set; }
-        public AttributeData Playmaking { get; set; }
+        public int[] Post { get; set; }
+        public int[] Inside { get; set; }
+        public int[] Shooting { get; set; }
+        public int[] Playmaking { get; set; }
 
         public OffenseGroup()
         {
-            Post = new AttributeData(4);
-            Inside = new AttributeData(4);
-            Shooting = new AttributeData(5);
-            Playmaking = new AttributeData(5);
+            Post = new int[4 + 1];
+            Inside = new int[4 + 1];
+            Shooting = new int[5 + 1];
+            Playmaking = new int[5 + 1];
+            Array.Fill(Post, 25);
+            Array.Fill(Inside, 25);
+            Array.Fill(Shooting, 25);
+            Array.Fill(Playmaking, 25);
+            Post[0] = 0; Inside[0] = 0; Shooting[0] = 0; Playmaking[0] = 0;
         }
     }
 
     public class DefenseGroup
     {
-        public AttributeData Contesting { get; set; }
-        public AttributeData Defending { get; set; }
+        public int[] Contesting { get; set; }
+        public int[] Defending { get; set; }
 
         public DefenseGroup()
         {
-            Contesting = new AttributeData(3);
-            Defending = new AttributeData(3);
+            Contesting = new int[3 + 1];
+            Defending = new int[3 + 1];
+            Array.Fill(Contesting, 25);
+            Array.Fill(Defending, 25);
+            Contesting[0] = 0; Defending[0] = 0;
         }
     }
 
     public class AthleticismGroup
     {
-        public AttributeData Movement { get; set; }
-        public AttributeData Physical { get; set; }
+        public int[] Movement { get; set; }
+        public int[] Physical { get; set; }
 
         public AthleticismGroup()
         {
-            Movement = new AttributeData(4);
-            Physical = new AttributeData(4);
+            Movement = new int[4 + 1];
+            Physical = new int[4 + 1];
+            Array.Fill(Movement, 25);
+            Array.Fill(Physical, 25);
+            Movement[0] = 0; Physical[0] = 0;
         }
     }
 
     public class MentalGroup
     {
-        public AttributeData DefenseIQ { get; set; }
-        public AttributeData Consistency { get; set; }
+        public int[] DefenseIQ { get; set; }
+        public int[] Consistency { get; set; }
 
         public MentalGroup()
         {
-            DefenseIQ = new AttributeData(3);
-            Consistency = new AttributeData(3);
+            DefenseIQ = new int[3 + 1];
+            Consistency = new int[3 + 1];
+            Array.Fill(DefenseIQ, 25);
+            Array.Fill(Consistency, 25);
+            DefenseIQ[0] = 0; Consistency[0] = 0;
         }
     }
-
-    public class AttributeData
-    {
-        public int XP { get; set; }
-        public int[] Level { get; set; }
-
-        public AttributeData(int AttributesNumer)
-        {
-            XP = 0;
-            Level = new int[AttributesNumer];
-            Array.Fill(Level, 25);
-        }
-    }
-
 
     public enum AttributeType
     {

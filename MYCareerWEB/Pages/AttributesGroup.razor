@@ -3,18 +3,18 @@
 @using MYCareerWEB.Code.PlayerData
 @inject IIndexedDbFactory DbFactory
 
-<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 g-1">
-    @for (int i = 0; i < AttributeNames.Length; i++)
+<div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-5 g-1">
+    @for (int i = 0; i < Names.Length; i++)
     {
         int id = i;
-        int cost = CalculateCost(PlayerAttributeData[id], ModifierData[i, 0], ModifierData[i, 1], ModifierData[i, 2]);
+        int cost = CalculateCost(Data.Level[id], Modifiers[i, 0], Modifiers[i, 1], Modifiers[i, 2]);
         <div class="col">
             <div class="card h-100 text-center">
                 <div class="card-header h-100 d-flex align-items-center justify-content-center border-0">
-                    @AttributeNames[i]
+                    @Names[i]
                 </div>
                 <div class="card-body align-self-center">
-                    <label class="pe-1">@PlayerAttributeData[id]</label>
+                    <label class="pe-1">@Data.Level[id]</label>
                     <button class="btn-primary" @onclick="() => UpgradeAttribute(id, cost)"><i class="fa fa-plus"></i> @(cost)XP</button>
                 </div>
             </div>
@@ -24,11 +24,13 @@
 
 @code {
     [Parameter]
-    public string[] AttributeNames { get; set; }
+    public AttributeType Type { get; set; }
     [Parameter]
-    public Attributes PlayerAttributeData { get; set; }
+    public string[] Names { get; set; }
     [Parameter]
-    public float[,] ModifierData { get; set; }
+    public AttributeData Data { get; set; }
+    [Parameter]
+    public float[,] Modifiers { get; set; }
 
     //protected override void OnInitialized()
     //{
@@ -43,17 +45,18 @@
 
     private async Task UpgradeAttribute(int id, int cost)
     {
-        int currentLevel = PlayerAttributeData[id];
+        
+        int currentLevel = Data.Level[id];
 
-        if (AppData.CurrentPlayer.Attributes.XP >= cost && cost != 0)
+        if (Data.XP >= cost && cost != 0)
         {
-            PlayerAttributeData[id] += 1;
-            AppData.CurrentPlayer.Attributes.XP -= cost;
+            Data.Level[id] += 1;
+            Data.XP -= cost;
         }
 
         using (var db = await this.DbFactory.Create<AppDB>())
         {
-            Player EditedPlayer = db.Player.Single(x => x.Id == AppData.CurrentPlayer.Id);
+            Player EditedPlayer = db.Players.Single(x => x.Id == AppData.CurrentPlayer.Id);
             EditedPlayer.Attributes = AppData.CurrentPlayer.Attributes;
             await db.SaveChanges();
         }

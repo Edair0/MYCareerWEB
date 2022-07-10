@@ -17,7 +17,6 @@
                     </div>
                     <div class="card-body">
                         <p class="card-text">@Positions[player.Position] @String.Format(CultureInfo.InvariantCulture, "{0:0.00}", (float)player.Height / 100)M </p>
-                        <p class="card-text">Attributes XP: @player.Attributes.XP</p>
                         <p class="card-text">Badges XP: @player.Badges.XP</p>
                         <div class="btn-group d-flex" role="group">
                             <a type="button" href="#" class="btn btn-primary" @onclick="() => SelectPlayer(player)">Select</a>
@@ -93,7 +92,7 @@
     {
         using (var db = await this.DbFactory.Create<AppDB>())
         {
-            AppData.Players = db.Player.ToList();
+            AppData.Players = db.Players.ToList();
             await db.SaveChanges();
         }
     }
@@ -102,17 +101,13 @@
     {
         if(FullName != string.Empty && Position != 0)
         {
-
+            Player NewPlayer = AppData.CreatePlayer(FullName, Position, Height);
             using (var db = await DbFactory.Create<AppDB>())
-            {
-                db.Player.Add(AppData.CreatePlayer(FullName, Position, Height));
+            {       
+                db.Players.Add(NewPlayer);
                 await db.SaveChanges();
             }
-            using (var db = await DbFactory.Create<AppDB>())
-            {
-                AppData.AddPlayer(db.Player.Last());
-                ToggleNewPlayerForm();
-            }
+            ToggleNewPlayerForm();
         }
         else
         {
@@ -124,7 +119,7 @@
     {
         using (var db = await DbFactory.Create<AppDB>())
         {
-            bool removed = db.Player.Remove(player);
+            bool removed = db.Players.Remove(player);
             if (removed)
             {
                 if (AppData.CurrentPlayer != null && player.Id == AppData.CurrentPlayer.Id)

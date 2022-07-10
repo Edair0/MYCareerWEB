@@ -1,0 +1,58 @@
+﻿@page "/AttributesData"
+@using MYCareerWEB.Code
+
+@if(AppData.CurrentPlayer != null)
+{
+    <div class="row row-cols-4 row-cols-sm-2 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-4 g-1">
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option1" @onclick="() => ChangeAttributeGroup(1)">
+            <label class="btn btn-secondary" for="option1">Offense</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option2" @onclick="() => ChangeAttributeGroup(2)">
+            <label class="btn btn-secondary" for="option2">Defense</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option3" @onclick="() => ChangeAttributeGroup(3)">
+            <label class="btn btn-secondary" for="option3">Athleticism</label>
+        </div>
+        <div class="col d-grid">
+            <input type="radio" class="btn-check" name="options" id="option4" @onclick="() => ChangeAttributeGroup(4)">
+            <label class="btn btn-secondary" for="option4">Mental</label>
+        </div>
+    </div>
+    <hr />
+
+    if (SelectedGroup == 1)
+    {
+        <AttributesGroup Names="AppData.Locale.OffenseInside" Data="AppData.CurrentPlayer.Attributes.Offense.Inside" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.OffenseShooting" Data="AppData.CurrentPlayer.Attributes.Offense.Shooting" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.OffensePost" Data="AppData.CurrentPlayer.Attributes.Offense.Post" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.OffensePlaymaking" Data="AppData.CurrentPlayer.Attributes.Offense.Playmaking" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 2)
+    {
+        <AttributesGroup Names="AppData.Locale.DefenseContesting" Data="AppData.CurrentPlayer.Attributes.Defense.Contesting" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.DefenseDefending" Data="AppData.CurrentPlayer.Attributes.Defense.Defending" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 3)
+    {
+        <AttributesGroup Names="AppData.Locale.AthleticismMovement" Data="AppData.CurrentPlayer.Attributes.Athleticism.Movement" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.AthleticismPhysical" Data="AppData.CurrentPlayer.Attributes.Athleticism.Physical" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    }
+    if (SelectedGroup == 4)
+    {
+        <AttributesGroup Names="AppData.Locale.MentalConsistency" Data="AppData.CurrentPlayer.Attributes.Mental.Consistency" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+        <AttributesGroup Names="AppData.Locale.MentalDefenseIQ" Data="AppData.CurrentPlayer.Attributes.Mental.DefenseIQ" Modifiers="AppData.Modifiers.OffenseMults"></AttributesGroup>
+    }
+}
+
+
+@code {
+    private int SelectedGroup = 0;
+
+    private void ChangeAttributeGroup(int GroupID)
+    {
+        SelectedGroup = GroupID;
+    }
+}

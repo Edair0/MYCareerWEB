@@ -90,7 +90,7 @@
 
         using (var db = await this.DbFactory.Create<AppDB>())
         {
-            Player EditedPlayer = db.Player.Single(x => x.Id == AppData.CurrentPlayer.Id);
+            Player EditedPlayer = db.Players.Single(x => x.Id == AppData.CurrentPlayer.Id);
             EditedPlayer.Badges = AppData.CurrentPlayer.Badges;
             await db.SaveChanges();
         }

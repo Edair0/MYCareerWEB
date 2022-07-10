@@ -20,67 +20,76 @@ namespace MYCareerWEB.Code.PlayerData
 
     public class OffenseGroup
     {
-        public Attribute Post { get; set; }
-        public Attribute Inside { get; set; }
-        public Attribute Shooting { get; set; }
-        public Attribute Playmaking { get; set; }
+        public AttributeData Post { get; set; }
+        public AttributeData Inside { get; set; }
+        public AttributeData Shooting { get; set; }
+        public AttributeData Playmaking { get; set; }
 
         public OffenseGroup()
         {
-            Post = new Attribute(4);
-            Inside = new Attribute(4);
-            Shooting = new Attribute(5);
-            Playmaking = new Attribute(5);
+            Post = new AttributeData(4);
+            Inside = new AttributeData(4);
+            Shooting = new AttributeData(5);
+            Playmaking = new AttributeData(5);
         }
     }
 
     public class DefenseGroup
     {
-        public Attribute Contesting { get; set; }
-        public Attribute Defending { get; set; }
+        public AttributeData Contesting { get; set; }
+        public AttributeData Defending { get; set; }
 
         public DefenseGroup()
         {
-            Contesting = new Attribute(3);
-            Defending = new Attribute(3);
+            Contesting = new AttributeData(3);
+            Defending = new AttributeData(3);
         }
     }
 
     public class AthleticismGroup
     {
-        public Attribute Movement { get; set; }
-        public Attribute Physical { get; set; }
+        public AttributeData Movement { get; set; }
+        public AttributeData Physical { get; set; }
 
         public AthleticismGroup()
         {
-            Movement = new Attribute(4);
-            Physical = new Attribute(4);
+            Movement = new AttributeData(4);
+            Physical = new AttributeData(4);
         }
     }
 
     public class MentalGroup
     {
-        public Attribute DefenseIQ { get; set; }
-        public Attribute Consistency { get; set; }
+        public AttributeData DefenseIQ { get; set; }
+        public AttributeData Consistency { get; set; }
 
         public MentalGroup()
         {
-            DefenseIQ = new Attribute(3);
-            Consistency = new Attribute(3);
+            DefenseIQ = new AttributeData(3);
+            Consistency = new AttributeData(3);
         }
     }
 
-    public class Attribute
+    public class AttributeData
     {
         public int XP { get; set; }
-        public int[] Inside { get; set; }
+        public int[] Level { get; set; }
 
-        public Attribute(int AttributesNumer)
+        public AttributeData(int AttributesNumer)
         {
             XP = 0;
-            Inside = new int[AttributesNumer];
-            Array.Fill(Inside, 25);
+            Level = new int[AttributesNumer];
+            Array.Fill(Level, 25);
         }
+    }
+
+
+    public enum AttributeType
+    {
+        Offense = 0,
+        Defense = 1,
+        Athleticism = 2,
+        Mental = 3,
     }
 
     public enum Offense : int
